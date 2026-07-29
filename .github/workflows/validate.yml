@@ -11,6 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Scan Git history for secrets
+        env:
+          GITLEAKS_VERSION: "8.30.1"
+        run: |
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          base_url="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error \
+            --output gitleaks-checksums.txt \
+            "$base_url/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
+          grep "  $archive$" gitleaks-checksums.txt | sha256sum --check
+          tar -xzf "$archive" gitleaks
+          ./gitleaks detect --source . --redact --no-banner
       - uses: actions/setup-node@v7
         with:
           node-version: "22"

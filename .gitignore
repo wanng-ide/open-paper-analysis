@@ -2,3 +2,9 @@
 paper-notes/
 __pycache__/
 *.pyc
+.env
+.env.*
+*.key
+*.pem
+credentials.json
+secrets.json

@@ -1,0 +1,4 @@
+.open-paper-analysis.toml
+paper-notes/
+__pycache__/
+*.pyc

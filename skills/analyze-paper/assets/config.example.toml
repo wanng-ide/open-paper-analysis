@@ -13,7 +13,7 @@ template_page_id = ""
 
 [notion.properties]
 title = ""
-authors = ""
+institutions = ""
 paper_url = ""
 published = ""
 venue = ""

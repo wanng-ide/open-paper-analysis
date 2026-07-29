@@ -41,7 +41,8 @@ paper's experimental claims.
 
 Capture:
 
-- Exact title, authors, publication or submission date, and venue status.
+- Exact title, authors for identity resolution, primary institutions,
+  publication or submission date, and venue status.
 - Research question and explicit scope.
 - Inputs, outputs, modules, data flow, objectives, and assumptions.
 - Data sources, filtering, annotation, splits, scale, and licenses.
@@ -53,6 +54,11 @@ Capture:
 
 Read captions and the surrounding discussion for each retained figure or table.
 Do not infer a result from a caption alone when the body qualifies it.
+
+Resolve institutions from the paper's affiliation block, official source
+package, or venue PDF. Use the official full affiliation names, retain named
+laboratories or institutes when present, and deduplicate spelling variants.
+Do not infer an institution from an email domain or author biography alone.
 
 ## Claim discipline
 

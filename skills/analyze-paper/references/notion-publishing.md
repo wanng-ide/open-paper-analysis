@@ -75,6 +75,9 @@ Read the live database schema before setting properties. Map canonical Markdown
 metadata through `[notion.properties]` in the configuration.
 
 - Reuse existing select and multi-select options when accurate.
+- Map canonical `institutions` to the configured institution property. Preserve
+  official affiliation names, deduplicate aliases, and do not populate it with
+  author names.
 - Keep topics and contributions to at most four options each.
 - Create a new option only when no existing option fits.
 - Do not assume English, Chinese, or any user's private property names.

@@ -31,8 +31,8 @@ Begin the note with YAML frontmatter:
 ```yaml
 ---
 title: "Exact paper title"
-authors:
-  - "Author One"
+institutions:
+  - "Primary institution"
 paper_url: "https://canonical-paper-page"
 pdf_url: "https://optional-direct-pdf"
 doi: "optional DOI"
@@ -51,6 +51,12 @@ sources:
   - "https://primary-source"
 ---
 ```
+
+Use `institutions` for the official affiliations that materially represent the
+paper. Prefer the full names printed in the paper or official source, preserve
+distinct laboratories or institutes when they are part of the affiliation, and
+deduplicate aliases. Do not use an author list as a substitute for
+institutions.
 
 Keep `topics` and `contributions` to at most four values each. Omit optional
 keys whose values are unknown rather than inventing them. Omit `rating` when
@@ -118,7 +124,8 @@ Read the complete existing file before editing.
 Read the written file from disk, not the in-memory draft. Confirm:
 
 - The path and slug are correct.
-- YAML frontmatter is closed and contains required metadata.
+- YAML frontmatter is closed and contains required metadata, including official
+  institutions rather than an author list.
 - `Sources` and chapters `0` through `8` are present.
 - Chapters `3` and `4` are paper-specific.
 - Figure/table callouts are real, numbered, and analyzed.

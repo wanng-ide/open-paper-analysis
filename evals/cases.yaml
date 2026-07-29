@@ -7,6 +7,7 @@ cases:
       - Classifies the paper as model/method.
       - Explains inputs, outputs, mechanism, training, and inference.
       - Uses primary sources and real numbered figure/table callouts.
+      - Records official institutions in portable metadata instead of requiring an author list.
   - id: benchmark-from-pdf
     prompt: Analyze one dataset or benchmark paper from a PDF into Markdown.
     checks:

@@ -17,7 +17,7 @@ and verifies the finished artifact. Notion publishing is optional.
 | Evidence-first analysis | Builds an evidence map from primary sources before drafting and separates reported results from research judgment. |
 | Paper-type adaptation | Uses distinct structures for model/method, dataset/benchmark, system/tool, survey/position, and technical-report papers. |
 | Safe create or update | Detects duplicates by DOI, arXiv ID, canonical URL, or exact title and preserves useful user content during updates. |
-| Portable output | Produces Markdown by default and follows the user's language while preserving exact technical names and metrics. |
+| Portable output | Produces Markdown with official institution metadata by default and follows the user's language while preserving exact technical names and metrics. |
 | Optional publishing | Publishes to Notion through an available connected tool or `ntn`, but falls back to Markdown without blocking the analysis. |
 | Read-back verification | Reopens the written artifact and validates metadata, chapters, numbered figure/table evidence, and process-text removal. |
 | Privacy by design | Keeps credentials, personal database IDs, local paths, recorder identities, and private property mappings outside the public Skill. |
@@ -54,7 +54,7 @@ The repository includes a complete Chinese model/method example:
 Language Models](examples/deepseekmoe.md)
 
 It is generated from public primary sources only and demonstrates portable
-metadata, paper-specific mechanism and evidence chapters, numbered
+institution metadata, paper-specific mechanism and evidence chapters, numbered
 figure/table analysis, limitations, research judgment, and source attribution.
 It contains no Notion page ID or personal configuration.
 
@@ -119,7 +119,7 @@ PDF、DOI、论文标题、项目主页、代码仓库或已有笔记出发，�
 - 优先读取论文 PDF、源码、会议页面、项目主页和官方仓库，再建立
   evidence map，不根据二手摘要拼接结论。
 - 根据模型方法、数据集评测、系统工具、综述观点和技术报告选择不同结构。
-- 默认生成可移植 Markdown，也可按能力发布到 Notion。
+- 默认生成带正式单位信息的可移植 Markdown，也可按能力发布到 Notion。
 - 写入前查重，更新时保留用户内容，写入后重新读取并运行结构验证。
 - 不把凭据、私人数据库 ID、本地路径、记录者和私有属性映射放进公开 Skill。
 

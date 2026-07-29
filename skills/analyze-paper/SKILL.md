@@ -70,15 +70,17 @@ When delegating:
    card, and author-provided appendices.
 5. Classify the paper as model/method, dataset/benchmark, system/tool,
    survey/position, technical report, or other.
-6. Build an evidence map before drafting: problem, scope, artifact, mechanism,
-   implementation or construction, decisive experiments, ablations or cases,
-   key numbered figures/tables, limitations, and follow-up links.
+6. Build an evidence map before drafting: official primary institutions,
+   problem, scope, artifact, mechanism, implementation or construction,
+   decisive experiments, ablations or cases, key numbered figures/tables,
+   limitations, and follow-up links.
 7. Draft from the evidence map using paper-specific headings. Keep confirmed
    claims separate from personal research judgment.
 8. Write or update the selected artifact. Preserve user-added media, links,
    custom sections, and useful old notes unless replacement was requested.
-9. Read the artifact back and verify metadata, sources, chapter structure,
-   figure/table callouts, analysis depth, and absence of process text.
+9. Read the artifact back and verify institution metadata, sources, chapter
+   structure, figure/table callouts, analysis depth, and absence of process
+   text.
 10. Return the artifact path or page URL plus a concise completion report.
 
 ## Completion report

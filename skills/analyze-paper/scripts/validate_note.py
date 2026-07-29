@@ -11,7 +11,7 @@ from pathlib import Path
 
 REQUIRED_METADATA = (
     "title",
-    "authors",
+    "institutions",
     "paper_url",
     "published",
     "venue",
@@ -20,6 +20,10 @@ REQUIRED_METADATA = (
     "contributions",
     "status",
     "sources",
+)
+
+FORBIDDEN_METADATA = (
+    "authors",
 )
 
 FORBIDDEN_PATTERNS = {
@@ -69,6 +73,11 @@ def validate(text: str, min_callouts: int) -> list[str]:
         for key in REQUIRED_METADATA:
             if not re.search(rf"^{re.escape(key)}:", metadata, re.MULTILINE):
                 errors.append(f"missing metadata key: {key}")
+        for key in FORBIDDEN_METADATA:
+            if re.search(rf"^{re.escape(key)}:", metadata, re.MULTILINE):
+                errors.append(
+                    f"deprecated metadata key: {key}; use institutions instead"
+                )
 
     if not re.search(r"^# (?:Sources|参考|来源)\b", text, re.MULTILINE):
         errors.append("missing Sources heading")

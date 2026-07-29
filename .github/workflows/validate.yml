@@ -1,0 +1,44 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  skill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Validate Agent Skill
+        run: npx --yes skills-ref@0.1.5 validate skills/analyze-paper
+      - name: Check scripts
+        run: |
+          bash -n scripts/install.sh
+          bash -n scripts/test-install.sh
+          python -m py_compile scripts/check_markdown_links.py
+          python -m py_compile skills/analyze-paper/scripts/validate_note.py
+      - name: Check Markdown links
+        run: python scripts/check_markdown_links.py
+      - name: Test installer
+        run: bash scripts/test-install.sh
+      - name: Parse example configuration
+        run: |
+          python - <<'PY'
+          import tomllib
+          from pathlib import Path
+
+          path = Path("skills/analyze-paper/assets/config.example.toml")
+          with path.open("rb") as handle:
+              config = tomllib.load(handle)
+          assert config["version"] == 1
+          assert config["defaults"]["output"] == "markdown"
+          assert config["notion"]["enabled"] is False
+          PY

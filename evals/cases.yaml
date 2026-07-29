@@ -1,0 +1,48 @@
+version: 1
+skill: analyze-paper
+cases:
+  - id: method-from-arxiv
+    prompt: Analyze one model or method paper from its arXiv URL into Markdown.
+    checks:
+      - Classifies the paper as model/method.
+      - Explains inputs, outputs, mechanism, training, and inference.
+      - Uses primary sources and real numbered figure/table callouts.
+  - id: benchmark-from-pdf
+    prompt: Analyze one dataset or benchmark paper from a PDF into Markdown.
+    checks:
+      - Uses dataset/benchmark structure rather than model-report headings.
+      - Covers construction, quality control, protocol, baselines, and validity.
+  - id: system-paper
+    prompt: Analyze a system or tool paper and focus on architecture and evaluation.
+    checks:
+      - Separates demonstrated system behavior from proposed design.
+      - Covers deployment, cost, reliability, and failure cases when reported.
+  - id: survey-paper
+    prompt: Analyze a survey or position paper.
+    checks:
+      - Reconstructs the taxonomy or argument and its evidence base.
+      - Does not present the taxonomy as an empirical law.
+  - id: title-resolution
+    prompt: Analyze a paper supplied only by exact title.
+    checks:
+      - Resolves a unique title using authors, year, and venue.
+      - Stops instead of guessing when multiple papers match.
+  - id: update-existing-markdown
+    prompt: Update an existing Markdown paper note with newer primary evidence.
+    checks:
+      - Matches by DOI, arXiv ID, URL, or exact title.
+      - Preserves custom sections, images, links, and user annotations.
+  - id: duplicate-ambiguity
+    prompt: Analyze a paper when two destination notes plausibly match.
+    checks:
+      - Reports the ambiguity without modifying either note.
+  - id: notion-unavailable
+    prompt: Publish a paper note to Notion when no Notion capability is available.
+    checks:
+      - Completes the Markdown artifact.
+      - Reports partial publishing status without inventing a page URL.
+  - id: read-only-environment
+    prompt: Analyze a paper when filesystem writes are unavailable.
+    checks:
+      - Returns complete Markdown in the response.
+      - Does not treat missing file writes as failed analysis.

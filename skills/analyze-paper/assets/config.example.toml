@@ -1,0 +1,30 @@
+version = 1
+
+[defaults]
+output = "markdown"
+notes_directory = "paper-notes"
+language = "auto"
+
+[notion]
+enabled = false
+database_id = ""
+data_source_id = ""
+template_page_id = ""
+
+[notion.properties]
+title = ""
+authors = ""
+paper_url = ""
+published = ""
+venue = ""
+paper_type = ""
+topics = ""
+contributions = ""
+project_url = ""
+code_url = ""
+status = ""
+rating = ""
+
+[notion.values]
+completed_status = ""
+recorder = ""

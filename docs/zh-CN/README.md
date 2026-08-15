@@ -13,7 +13,7 @@ canonical 后端工件、证据清单和截图规范都集中在同一个入口�
 ## 指南
 
 - [快速开始](getting-started.md)：安装、调用和理解一次运行。
-- [配置](configuration.md)：v2 配置、目标选择和 v1 兼容。
+- [配置](configuration.md)：version 2 schema、目标选择和校验行为。
 - [输出后端](outputs.md)：Markdown、Notion enhanced Markdown、飞书
   XML，以及部分失败时的行为。
 - [质量、媒体与安全](quality-media-safety.md)：深度标准、证据锚点、素材

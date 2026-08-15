@@ -3,9 +3,9 @@
 ## Contents
 
 - Discovery
-- Version 2
+- Schema
 - Run-time overrides
-- Version 1 compatibility
+- Schema validation
 - Privacy boundary
 
 ## Discovery
@@ -19,7 +19,7 @@ Load the first existing configuration in this order:
 No configuration is required. Without one, use deep analysis, marker media, and
 Markdown under `paper-notes`.
 
-## Version 2
+## Schema
 
 Version 2 separates shared defaults, media policy, and target destinations:
 
@@ -74,23 +74,18 @@ host or user must supply a destination before remote publishing.
 The current user request overrides configuration. Resolve:
 
 1. Explicit outputs, paths, parent locations, language, and media mode.
-2. Discovered version 2 or version 1 configuration.
+2. A discovered and valid version 2 configuration.
 3. Built-in defaults.
 
 Do not rewrite a user's configuration as a side effect of paper analysis.
 
-## Version 1 compatibility
+## Schema validation
 
-Accept the original version 1 keys without requiring migration:
-
-- `[defaults].output` becomes a one-item output list.
-- `[defaults].notes_directory` becomes `[markdown].notes_directory`.
-- `[notion].enabled = true` adds `notion` when the current request does not
-  specify outputs.
-- Existing Notion destination and property mapping keys keep their meaning.
-
-If both version 1 and version 2 forms appear, prefer the version 2 form and
-report the ignored legacy key as a non-blocking configuration warning.
+Only configuration files with `version = 2` are supported. Do not infer,
+migrate, or reinterpret files with a missing or different version. Report the
+configuration problem clearly and continue with explicit request values plus
+built-in Markdown defaults when that is safe. Never rewrite the user's file as
+a side effect of paper analysis.
 
 ## Privacy boundary
 

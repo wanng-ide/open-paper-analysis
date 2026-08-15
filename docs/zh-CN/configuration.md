@@ -13,7 +13,7 @@
 可以从 `skills/analyze-paper/assets/config.example.toml` 开始配置。不要
 提交填入了真实目标的本地配置。
 
-## v2 配置
+## 配置 schema
 
 ```toml
 version = 2
@@ -82,19 +82,12 @@ doc_format = "xml"
 library position；也可都留空，在请求中临时指定。若工具要求二者互斥，
 必须遵守。文档默认采用 XML。
 
-## v1 兼容
+## Schema 校验
 
-旧配置仍可读取：
-
-| v1 键 | v2 解释 |
-| --- | --- |
-| `defaults.output` | 单元素 `defaults.outputs` |
-| `defaults.notes_directory` | `markdown.notes_directory` |
-| `notion.enabled = true` | 当请求未选目标时加入 Notion |
-| 旧 Notion 映射 | 保持原含义 |
-
-两种形式同时出现时以 v2 为准，并报告非阻塞 warning。Skill 不会在论文
-分析过程中自动改写用户配置。
+Skill 只支持包含 `version = 2` 的配置文件。版本缺失或版本号不同时，不进行
+自动迁移，也不猜测旧键含义。Agent 会明确报告配置问题；若继续执行是安全的，
+则只使用用户当次请求和内置 Markdown 默认值。论文分析不会自动改写用户的
+配置文件。
 
 ## 凭据边界
 

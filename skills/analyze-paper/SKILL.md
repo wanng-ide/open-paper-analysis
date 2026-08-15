@@ -13,8 +13,8 @@ summary.
 
 Read these files before drafting:
 
-- [Configuration](references/configuration.md) for target resolution, version 2
-  defaults, version 1 compatibility, and the credential boundary.
+- [Configuration](references/configuration.md) for target resolution, the
+  version 2 schema, validation, and the credential boundary.
 - [Source policy](references/source-policy.md) for discovery and evidence rules.
 - [Content contract](references/content-contract.md) for the shared deep
   manuscript and multi-target invariants.

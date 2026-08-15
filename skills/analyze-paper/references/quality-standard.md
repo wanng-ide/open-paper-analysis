@@ -129,7 +129,10 @@ Read the final artifact back and check:
 - Metadata identifies the correct paper and primary sources.
 - Every requested target reflects the same manuscript, visual labels, and
   research judgment.
-- Topics and contributions each contain no more than four precise values.
+- Topics and contributions each contain no more than four precise values;
+  contributions are compact tags rather than sentences, with Chinese tags
+  normally limited to four Han characters and space-delimited tags to four
+  words.
 - `Sources` and chapters `0` through `8` exist.
 - Chapters `3` and `4` have paper-specific titles.
 - Core subsections contain analysis rather than one-line prompts.

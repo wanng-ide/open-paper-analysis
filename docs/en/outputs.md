@@ -18,6 +18,9 @@ judgment.
 Markdown is the default and universal fallback. It uses:
 
 - YAML metadata with official institutions, not an author list.
+- One to four compact contribution tags. Chinese tags use at most four Han
+  characters and space-delimited tags use at most four words; detailed claims
+  remain in the body.
 - A visible paper title and linked contents.
 - `Sources`, then numbered chapters `0` through `8`.
 - Standard equations, tables, links, and stable relative image paths.
@@ -30,7 +33,8 @@ Markdown is the default and universal fallback. It uses:
 
 Notion uses official enhanced Markdown plus structured property calls:
 
-1. Database properties contain canonical metadata through the live schema map.
+1. Database properties contain canonical metadata through the live schema map,
+   including the same compact contribution tags used by Markdown.
 2. The body begins with `# 目录` and a native table-of-contents block.
 3. `# 参考` precedes chapters `0` through `8`.
 4. The page title is not repeated in the body.

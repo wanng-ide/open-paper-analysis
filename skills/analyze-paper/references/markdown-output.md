@@ -44,7 +44,7 @@ paper_type: "model/method"
 topics:
   - "precise topic"
 contributions:
-  - "diagnostic contribution"
+  - "expert segmentation"
 project_url: "optional official project page"
 code_url: "optional official repository"
 status: "analyzed"
@@ -60,7 +60,10 @@ distinct laboratories or institutes when they are part of the affiliation, and
 deduplicate aliases. Do not use an author list as a substitute for
 institutions.
 
-Keep `topics` and `contributions` to at most four values each. Omit optional
+Keep `topics` and `contributions` to at most four values each. Contribution
+values are compact property tags, not mini-abstracts: use no more than four Han
+characters for a Chinese tag or four words for a space-delimited tag. Keep
+metrics, settings, and complete contribution claims in the body. Omit optional
 keys whose values are unknown rather than inventing them. Omit `rating` when
 there is not enough evidence for a useful personal judgment.
 

@@ -19,6 +19,11 @@ NOTION_PROPERTIES = EXAMPLE / "notion-properties.json"
 LARK = EXAMPLE / "lark.xml"
 MEDIA = EXAMPLE / "media.yaml"
 LABEL = r"(?:Appendix )?(?:Figure|Table) [A-Za-z0-9][A-Za-z0-9.\-]*"
+HAN_CHARACTER_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
+SPACE_DELIMITED_WORD_RE = re.compile(
+    r"[A-Za-z0-9]+(?:[-/][A-Za-z0-9]+)*"
+)
+SENTENCE_PUNCTUATION_RE = re.compile(r"[,.;:!?，。；：！？]")
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -157,6 +162,17 @@ def main() -> int:
     for key in ("institutions", "topics", "contributions"):
         if properties.get(key) != yaml_list(metadata, key):
             fail(errors, f"Notion property mismatch for {key}")
+
+    contribution_tags = yaml_list(metadata, "contributions")
+    if not 1 <= len(contribution_tags) <= 4:
+        fail(errors, "golden example must contain 1-4 contribution tags")
+    for tag in contribution_tags:
+        han_count = len(HAN_CHARACTER_RE.findall(tag))
+        word_count = len(SPACE_DELIMITED_WORD_RE.findall(tag))
+        if SENTENCE_PUNCTUATION_RE.search(tag):
+            fail(errors, f"contribution tag contains sentence punctuation: {tag}")
+        if han_count > 4 or (han_count == 0 and word_count > 4):
+            fail(errors, f"contribution tag is not compact: {tag}")
 
     lark_title = node_text(lark_root.find("./title"))  # type: ignore[arg-type]
     if lark_title != properties["title"]:

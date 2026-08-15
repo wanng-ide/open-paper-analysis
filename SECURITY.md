@@ -19,3 +19,14 @@ the issue, but do not paste a still-valid secret into the report.
 This repository uses GitHub secret scanning, push protection, and a full-history
 Gitleaks check in continuous integration. Local Notion configuration and common
 credential file formats are excluded from version control.
+
+CI also rejects credential-shaped assignments, private Notion or Lark document
+URLs, opaque page IDs, signed media URLs, personal machine paths, and known
+local identities in public text artifacts. Golden examples use only public
+paper sources and stable repository assets.
+
+Real-platform smoke tests must use clearly marked temporary pages or documents.
+Read-back logs and pull requests may record capability names, block counts, and
+pass/fail status, but must redact page/document IDs, URLs, account names,
+workspace schemas, and signed media locations. Move the temporary artifact to
+trash after verification.

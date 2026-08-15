@@ -42,7 +42,8 @@ paper's experimental claims.
 Capture:
 
 - Exact title, authors for identity resolution, primary institutions,
-  publication or submission date, and venue status.
+  publication or submission date, venue status, and paper or asset license when
+  media extraction is requested.
 - Research question and explicit scope.
 - Inputs, outputs, modules, data flow, objectives, and assumptions.
 - Data sources, filtering, annotation, splits, scale, and licenses.
@@ -54,6 +55,10 @@ Capture:
 
 Read captions and the surrounding discussion for each retained figure or table.
 Do not infer a result from a caption alone when the body qualifies it.
+
+When media mode is `extract`, verify reuse permission from the paper, venue, or
+asset license before extracting. Access alone is not permission. Record the
+license or explicit approval basis in the media manifest.
 
 Resolve institutions from the paper's affiliation block, official source
 package, or venue PDF. Use the official full affiliation names, retain named

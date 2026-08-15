@@ -1,12 +1,20 @@
-version = 1
+version = 2
 
 [defaults]
-output = "markdown"
-notes_directory = "paper-notes"
+outputs = ["markdown"]
 language = "auto"
+depth = "deep"
+
+[media]
+mode = "markers"
+max_items = 6
+license_policy = "open-or-approved"
+
+[markdown]
+notes_directory = "paper-notes"
+assets_directory = "assets"
 
 [notion]
-enabled = false
 database_id = ""
 data_source_id = ""
 template_page_id = ""
@@ -27,4 +35,8 @@ rating = ""
 
 [notion.values]
 completed_status = ""
-recorder = ""
+
+[lark]
+parent_token = ""
+parent_position = ""
+doc_format = "xml"

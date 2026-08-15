@@ -1,0 +1,30 @@
+{
+  "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models",
+  "institutions": [
+    "DeepSeek-AI",
+    "National Key Laboratory for Multimedia Information Processing, Peking University",
+    "Institute for Interdisciplinary Information Sciences, Tsinghua University",
+    "National Key Laboratory for Novel Software Technology, Nanjing University"
+  ],
+  "paper_url": "https://aclanthology.org/2024.acl-long.70/",
+  "pdf_url": "https://aclanthology.org/2024.acl-long.70.pdf",
+  "arxiv_url": "https://arxiv.org/abs/2401.06066",
+  "doi": "10.18653/v1/2024.acl-long.70",
+  "published": "2024-01-11",
+  "venue": "ACL 2024, Volume 1: Long Papers",
+  "paper_type": "model/method",
+  "topics": [
+    "稀疏混合专家语言模型",
+    "专家专门化",
+    "细粒度专家分割",
+    "共享专家隔离"
+  ],
+  "contributions": [
+    "在等专家参数与等计算约束下拆分专家并增加激活专家数",
+    "用始终激活的共享专家承载公共知识并降低路由专家冗余",
+    "以消融和专家屏蔽实验分析专家不可替代性与参数利用率",
+    "扩展到 16.4B 总参数和 2.8B 激活参数并训练 2T tokens"
+  ],
+  "code_url": "https://github.com/deepseek-ai/DeepSeek-MoE",
+  "status": "analyzed"
+}

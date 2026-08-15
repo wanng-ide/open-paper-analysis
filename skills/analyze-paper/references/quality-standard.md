@@ -22,7 +22,8 @@ Build this compact map before drafting:
 4. **Evidence**: datasets, benchmarks, metrics, baselines, main comparisons,
    ablations, qualitative cases, human studies, efficiency, and governance.
 5. **Visual anchors**: five to eight real numbered figures or tables for a
-   substantial paper, or every materially useful item when fewer exist.
+   substantial paper, or every materially useful item when fewer exist. Record
+   label, caption, source location, supported claim, and interpretation.
 6. **Boundaries**: access, reproducibility, cost, coverage, validity, release,
    safety, language, modality, domain, and overclaim risk.
 
@@ -51,6 +52,9 @@ part applies.
 ## Depth and style
 
 - Write a finished professional note, not a blog recap or section outline.
+- Use the deep profile for completed analysis. Chapter `0` normally has three
+  to five dense paragraphs; chapters `3` and `4` normally have three to six
+  substantive subsections when the evidence supports them.
 - Keep mechanism and evidence sections grounded in the paper.
 - Explain inputs, outputs, assumptions, design rationale, and why each retained
   detail matters.
@@ -64,6 +68,9 @@ part applies.
   chapter `8`.
 - Match length to evidence. Do not pad a short position paper to imitate a long
   technical report.
+- Do not compress chapters `5`, `6`, or `7` into a generic closing paragraph.
+  Cover concrete boundaries, confirmed versus unresolved claims, and developed
+  research judgment separately.
 
 For a technical report, capture model sizes, architecture, context limits, data
 and training stages, objectives, sampling or decoding, post-training,
@@ -71,8 +78,8 @@ efficiency, release status, and deployment constraints when reported.
 
 ## Figure and table callouts
 
-Use five to eight callouts for a substantial paper when that many useful
-numbered items exist. Use the paper's exact numbering:
+Use five to eight anchors for a substantial paper when that many useful
+numbered items exist. In marker mode use the paper's exact numbering:
 
 ```markdown
 > [Figure 1]
@@ -90,6 +97,9 @@ are the paper's labels. Do not invent numbers or write generic `Figure X`.
 Every callout must be followed immediately by analysis. Do not leave placement
 instructions, image-upload reminders, or a list of visuals without
 interpretation. Do not add a callout merely to reach a count.
+
+In extract mode, insert the media immediately before the same formal label and
+analysis. The presence of an image does not replace analytical prose.
 
 ## Limitations and judgment
 
@@ -117,6 +127,8 @@ scoring rubric in the note body.
 Read the final artifact back and check:
 
 - Metadata identifies the correct paper and primary sources.
+- Every requested target reflects the same manuscript, visual labels, and
+  research judgment.
 - Topics and contributions each contain no more than four precise values.
 - `Sources` and chapters `0` through `8` exist.
 - Chapters `3` and `4` have paper-specific titles.
@@ -136,5 +148,5 @@ When the Markdown validator is available, run:
 python scripts/validate_note.py <note-path>
 ```
 
-Use `--min-callouts 0` only when the paper genuinely has no useful numbered
+Use `--min-evidence 0` only when the paper genuinely has no useful numbered
 figures or tables, and explain that caveat in the completion report.

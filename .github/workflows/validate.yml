@@ -87,8 +87,10 @@ jobs:
 
           assert jpeg_size(root / "lark-overview.jpg") == (7996, 7352)
           assert jpeg_size(root / "lark-full.jpg") == (3828, 18552)
-          assert not (root / "notion.png").exists()
+          assert jpeg_size(root / "notion-overview.jpg") == (3361, 4435)
+          assert jpeg_size(root / "notion-full.jpg") == (3241, 20771)
           assert not (root / "lark.png").exists()
+          assert not (root / "notion.png").exists()
           PY
       - name: Test installer
         run: bash scripts/test-install.sh

@@ -30,3 +30,9 @@ Read-back logs and pull requests may record capability names, block counts, and
 pass/fail status, but must redact page/document IDs, URLs, account names,
 workspace schemas, and signed media locations. Move the temporary artifact to
 trash after verification.
+
+Public documentation screenshots exclude visible account, recorder, comment,
+and avatar metadata by default. Such display metadata may remain only after
+the owner explicitly approves publication. Private URLs, page/document IDs,
+workspace schemas, credentials, tokens, and authentication data are never
+covered by that exception.

@@ -95,12 +95,14 @@ meaning, metrics, limitations, and research judgment.
 | Target | Overview | Full capture or result | Canonical artifact |
 | --- | --- | --- | --- |
 | Markdown | [Overview PNG](examples/deepseekmoe/screenshots/markdown.png) | [Complete note](examples/deepseekmoe/markdown.md) | [Portable Markdown](examples/deepseekmoe/markdown.md) |
-| Notion | Awaiting a privacy-safe current capture | Awaiting a privacy-safe current capture | [Enhanced Markdown](examples/deepseekmoe/notion.md) and [logical properties](examples/deepseekmoe/notion-properties.json) |
+| Notion | [Overview JPG](examples/deepseekmoe/screenshots/notion-overview.jpg) | [Full-length JPG](examples/deepseekmoe/screenshots/notion-full.jpg) | [Enhanced Markdown](examples/deepseekmoe/notion.md) and [logical properties](examples/deepseekmoe/notion-properties.json) |
 | Feishu/Lark | [Overview JPG](examples/deepseekmoe/screenshots/lark-overview.jpg) | [Full-length JPG](examples/deepseekmoe/screenshots/lark-full.jpg) | [Native XML](examples/deepseekmoe/lark.xml) |
 | Evidence | [Media manifest](examples/deepseekmoe/media.yaml) | Six extracted visuals and two markers | [Sources and licenses](examples/deepseekmoe/media.yaml) |
 
-The public captures and fixtures contain no workspace URL, page ID, document
-token, signed media URL, credential, account identity, or local path. See the
+The canonical fixtures contain no workspace URL, page ID, document token,
+signed media URL, credential, account identity, or local path. The Notion
+captures retain owner-approved visible recorder and comment metadata, but no
+private identifiers or credentials. See the
 [full example guide](examples/deepseekmoe/README.md) for the reading path,
 cross-target mapping, and screenshot review boundary.
 
@@ -272,7 +274,9 @@ compatibility.
 
 Read [SECURITY.md](SECURITY.md) before publishing fixtures or configuration.
 Never commit API keys, OAuth tokens, cookies, private database or page IDs,
-personal property schemas, signed media URLs, account details, or local paths.
+personal property schemas, signed media URLs, or local paths. Visible account
+or comment metadata in a documentation screenshot requires explicit owner
+approval and must not reveal private identifiers or authentication data.
 
 ## License
 

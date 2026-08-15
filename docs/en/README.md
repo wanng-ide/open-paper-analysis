@@ -14,8 +14,8 @@ capture policy in one place.
 ## Guides
 
 - [Getting started](getting-started.md): install, invoke, and understand a run.
-- [Configuration](configuration.md): version 2, target selection, and version 1
-  compatibility.
+- [Configuration](configuration.md): version 2 schema, target selection, and
+  validation behavior.
 - [Output backends](outputs.md): Markdown, Notion enhanced Markdown, Lark XML,
   and partial-failure behavior.
 - [Quality, media, and safety](quality-media-safety.md): deep analysis,

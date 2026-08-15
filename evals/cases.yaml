@@ -100,11 +100,11 @@ cases:
     checks:
       - Returns complete Markdown in the response.
       - Does not treat missing file writes as failed analysis.
-  - id: version-one-configuration
-    prompt: Analyze a paper using an existing version 1 configuration.
+  - id: unsupported-configuration-version
+    prompt: Analyze a paper using a configuration whose version is not supported.
     checks:
-      - Maps output and notes_directory to version 2 semantics without rewriting the file.
-      - Honors notion.enabled only when the current request does not choose outputs.
+      - Does not infer, migrate, or reinterpret unsupported configuration keys.
+      - Reports the configuration problem and uses explicit request values plus safe Markdown defaults.
   - id: short-position-paper
     prompt: Deeply analyze a short position paper with limited empirical evidence.
     checks:

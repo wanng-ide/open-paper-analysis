@@ -56,18 +56,39 @@ jobs:
           python scripts/validate_examples.py
       - name: Test validators
         run: python -m unittest discover -s tests -v
-      - name: Check screenshot dimensions
+      - name: Check public screenshot dimensions
         run: |
           python - <<'PY'
           import struct
           from pathlib import Path
 
-          for name in ("markdown.png", "notion.png", "lark.png"):
-              path = Path("examples/deepseekmoe/screenshots") / name
+          root = Path("examples/deepseekmoe/screenshots")
+
+          png = (root / "markdown.png").read_bytes()
+          assert png[:8] == b"\x89PNG\r\n\x1a\n"
+          assert struct.unpack(">II", png[16:24]) == (1320, 1400)
+
+          def jpeg_size(path: Path) -> tuple[int, int]:
               data = path.read_bytes()
-              assert data[:8] == b"\x89PNG\r\n\x1a\n", name
-              width, height = struct.unpack(">II", data[16:24])
-              assert (width, height) == (1320, 1400), (name, width, height)
+              assert data[:2] == b"\xff\xd8", path.name
+              offset = 2
+              while offset < len(data):
+                  assert data[offset] == 0xFF, path.name
+                  marker = data[offset + 1]
+                  offset += 2
+                  if marker in {0xD8, 0xD9}:
+                      continue
+                  length = struct.unpack(">H", data[offset:offset + 2])[0]
+                  if marker in range(0xC0, 0xC4):
+                      height, width = struct.unpack(">HH", data[offset + 3:offset + 7])
+                      return width, height
+                  offset += length
+              raise AssertionError(f"No JPEG size marker: {path.name}")
+
+          assert jpeg_size(root / "lark-overview.jpg") == (7996, 7352)
+          assert jpeg_size(root / "lark-full.jpg") == (3828, 18552)
+          assert not (root / "notion.png").exists()
+          assert not (root / "lark.png").exists()
           PY
       - name: Test installer
         run: bash scripts/test-install.sh

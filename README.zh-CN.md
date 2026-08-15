@@ -82,15 +82,16 @@ model/method 论文分析，不是缩短版 demo。它展示同一份主稿如�
   </a>
 </p>
 
-| 检查目标 | Canonical 工件 |
-| --- | --- |
-| 阅读完整成品 | [可移植 Markdown](examples/deepseekmoe/markdown.md) |
-| 检查 Notion 正文 | [Enhanced Markdown](examples/deepseekmoe/notion.md)与[逻辑属性](examples/deepseekmoe/notion-properties.json) |
-| 检查飞书渲染 | [原生 XML](examples/deepseekmoe/lark.xml) |
-| 核对图表与复用权利 | [媒体与许可清单](examples/deepseekmoe/media.yaml) |
+| 输出目标 | Overview | Full 截图或完整结果 | Canonical 工件 |
+| --- | --- | --- | --- |
+| Markdown | [概览 PNG](examples/deepseekmoe/screenshots/markdown.png) | [完整笔记](examples/deepseekmoe/markdown.md) | [可移植 Markdown](examples/deepseekmoe/markdown.md) |
+| Notion | 等待与当前主稿一致的脱敏截图 | 等待与当前主稿一致的脱敏截图 | [Enhanced Markdown](examples/deepseekmoe/notion.md)与[逻辑属性](examples/deepseekmoe/notion-properties.json) |
+| 飞书文档 | [概览 JPG](examples/deepseekmoe/screenshots/lark-overview.jpg) | [完整长图 JPG](examples/deepseekmoe/screenshots/lark-full.jpg) | [原生 XML](examples/deepseekmoe/lark.xml) |
+| 共享证据 | [媒体清单](examples/deepseekmoe/media.yaml) | 6 个提取图表与 2 个 marker | [来源与许可](examples/deepseekmoe/media.yaml) |
 
-这些 fixture 不包含工作区 URL、页面 ID、文档 token、签名媒体 URL、凭据、
-账号身份或本地路径。
+公开截图与 fixture 不包含工作区 URL、页面 ID、文档 token、签名媒体 URL、
+凭据、账号身份或本地路径。更详细的阅读顺序、三端对应关系和截图审核边界见
+[完整案例指南](examples/deepseekmoe/README.md)。
 
 ## 输出内容
 
@@ -211,7 +212,7 @@ notes_directory = "paper-notes"
 ## 文档
 
 - [快速开始](docs/zh-CN/getting-started.md)
-- [配置与 v1 迁移](docs/zh-CN/configuration.md)
+- [配置](docs/zh-CN/configuration.md)
 - [输出后端与安全更新](docs/zh-CN/outputs.md)
 - [质量、媒体与安全](docs/zh-CN/quality-media-safety.md)
 - [开发与验证](docs/zh-CN/development.md)

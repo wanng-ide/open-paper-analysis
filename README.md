@@ -92,15 +92,17 @@ meaning, metrics, limitations, and research judgment.
   </a>
 </p>
 
-| Inspect | Canonical artifact |
-| --- | --- |
-| Read the finished note | [Portable Markdown](examples/deepseekmoe/markdown.md) |
-| Inspect the Notion body | [Enhanced Markdown](examples/deepseekmoe/notion.md) and [logical properties](examples/deepseekmoe/notion-properties.json) |
-| Inspect Feishu/Lark rendering | [Native XML](examples/deepseekmoe/lark.xml) |
-| Audit figures and reuse rights | [Media and license manifest](examples/deepseekmoe/media.yaml) |
+| Target | Overview | Full capture or result | Canonical artifact |
+| --- | --- | --- | --- |
+| Markdown | [Overview PNG](examples/deepseekmoe/screenshots/markdown.png) | [Complete note](examples/deepseekmoe/markdown.md) | [Portable Markdown](examples/deepseekmoe/markdown.md) |
+| Notion | Awaiting a privacy-safe current capture | Awaiting a privacy-safe current capture | [Enhanced Markdown](examples/deepseekmoe/notion.md) and [logical properties](examples/deepseekmoe/notion-properties.json) |
+| Feishu/Lark | [Overview JPG](examples/deepseekmoe/screenshots/lark-overview.jpg) | [Full-length JPG](examples/deepseekmoe/screenshots/lark-full.jpg) | [Native XML](examples/deepseekmoe/lark.xml) |
+| Evidence | [Media manifest](examples/deepseekmoe/media.yaml) | Six extracted visuals and two markers | [Sources and licenses](examples/deepseekmoe/media.yaml) |
 
-The fixture contains no workspace URL, page ID, document token, signed media
-URL, credential, account identity, or local path.
+The public captures and fixtures contain no workspace URL, page ID, document
+token, signed media URL, credential, account identity, or local path. See the
+[full example guide](examples/deepseekmoe/README.md) for the reading path,
+cross-target mapping, and screenshot review boundary.
 
 ## What It Produces
 
@@ -224,7 +226,7 @@ remain in the agent host, connected MCP, or CLI credential store.
 ## Documentation
 
 - [Getting started](docs/en/getting-started.md)
-- [Configuration and v1 migration](docs/en/configuration.md)
+- [Configuration](docs/en/configuration.md)
 - [Output backends and safe updates](docs/en/outputs.md)
 - [Quality, media, and safety](docs/en/quality-media-safety.md)
 - [Development and verification](docs/en/development.md)

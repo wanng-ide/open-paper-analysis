@@ -13,7 +13,7 @@ Configuration is optional. The Skill loads the first existing file:
 Copy `skills/analyze-paper/assets/config.example.toml` as a starting point.
 Do not commit a populated local configuration.
 
-## Version 2 schema
+## Configuration schema
 
 ```toml
 version = 2
@@ -86,19 +86,13 @@ node, or library position. Leave both empty when the destination will be
 provided in the request. They are mutually exclusive when the selected tool
 requires it. XML is the default document format.
 
-## Version 1 compatibility
+## Schema validation
 
-Version 1 remains readable:
-
-| Version 1 key | Version 2 interpretation |
-| --- | --- |
-| `defaults.output` | One-item `defaults.outputs` |
-| `defaults.notes_directory` | `markdown.notes_directory` |
-| `notion.enabled = true` | Add Notion when the request does not choose outputs |
-| Existing Notion mappings | Keep their original meaning |
-
-When both forms exist, version 2 wins and the legacy key produces a
-non-blocking warning. The Skill does not rewrite user configuration.
+The Skill supports only configuration files with `version = 2`. A file with a
+missing or different version is not migrated or reinterpreted. The agent
+reports the configuration problem and, when safe, continues from explicit
+request values plus the built-in Markdown defaults. Paper analysis never
+rewrites the user's configuration file.
 
 ## Credential boundary
 

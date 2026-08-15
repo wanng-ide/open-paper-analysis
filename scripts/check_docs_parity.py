@@ -42,10 +42,41 @@ def main() -> int:
             if f"[简体中文]({zh_target})" not in text:
                 errors.append(f"{path.relative_to(ROOT)} lacks Chinese navigation")
 
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    for target in ("docs/en/README.md", "docs/zh-CN/README.md"):
-        if target not in readme:
-            errors.append(f"root README does not link {target}")
+    root_readmes = {
+        "en": ROOT / "README.md",
+        "zh-CN": ROOT / "README.zh-CN.md",
+    }
+    for language, path in root_readmes.items():
+        if not path.exists():
+            errors.append(f"missing root {language} README: {path.name}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        if not re.search(r"^# Open Paper Analysis$", text, re.MULTILINE):
+            errors.append(f"{path.name} has no project H1")
+        for target in ("README.md", "README.zh-CN.md"):
+            if f"]({target})" not in text:
+                errors.append(f"{path.name} does not link {target}")
+        docs_target = f"docs/{language}/README.md"
+        if docs_target not in text:
+            errors.append(f"{path.name} does not link {docs_target}")
+
+    if all(path.exists() for path in root_readmes.values()):
+        heading_counts = {
+            language: len(
+                re.findall(
+                    r"^## [^#].*$",
+                    path.read_text(encoding="utf-8"),
+                    re.MULTILINE,
+                )
+            )
+            for language, path in root_readmes.items()
+        }
+        if heading_counts["en"] != heading_counts["zh-CN"]:
+            errors.append(
+                "root README section counts differ: "
+                f"English={heading_counts['en']}, "
+                f"Chinese={heading_counts['zh-CN']}"
+            )
 
     if errors:
         for error in errors:

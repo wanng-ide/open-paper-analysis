@@ -150,6 +150,7 @@ def main() -> int:
         "arxiv_url",
         "doi",
         "published",
+        "preprint_date",
         "venue",
         "paper_type",
         "code_url",
@@ -180,13 +181,31 @@ def main() -> int:
     lark_meta = lark_metadata(lark_root)
     expected_lark = {
         "机构": "；".join(properties["institutions"]),
-        "发布日期": properties["published"],
+        "正式发表": f'{properties["published"]}（ACL 2024）',
+        "首次公开": f'{properties["preprint_date"]}（arXiv v1）',
         "Venue": properties["venue"],
         "论文类型": properties["paper_type"],
+        "主题": "；".join(properties["topics"]),
+        "贡献": "；".join(properties["contributions"]),
     }
     for key, value in expected_lark.items():
         if lark_meta.get(key) != value:
             fail(errors, f"Lark metadata mismatch for {key}")
+
+    lark_metadata_links = {
+        link.attrib["href"]
+        for link in lark_root.findall("./table//a")
+        if "href" in link.attrib
+    }
+    expected_metadata_links = {
+        properties["paper_url"],
+        properties["pdf_url"],
+        properties["arxiv_url"],
+        f'https://doi.org/{properties["doi"]}',
+        properties["code_url"],
+    }
+    if lark_metadata_links != expected_metadata_links:
+        fail(errors, "Lark metadata links do not match canonical links")
 
     markdown_chapters = markdown_headings(markdown, 2, numbered_only=True)
     notion_chapters = markdown_headings(notion, 1, numbered_only=True)

@@ -10,7 +10,8 @@
   "pdf_url": "https://aclanthology.org/2024.acl-long.70.pdf",
   "arxiv_url": "https://arxiv.org/abs/2401.06066",
   "doi": "10.18653/v1/2024.acl-long.70",
-  "published": "2024-01-11",
+  "published": "2024-08",
+  "preprint_date": "2024-01-11",
   "venue": "ACL 2024, Volume 1: Long Papers",
   "paper_type": "model/method",
   "topics": [

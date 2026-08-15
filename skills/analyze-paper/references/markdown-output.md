@@ -37,8 +37,10 @@ institutions:
   - "Primary institution"
 paper_url: "https://canonical-paper-page"
 pdf_url: "https://optional-direct-pdf"
+arxiv_url: "https://optional-arxiv-abstract-page"
 doi: "optional DOI"
-published: "YYYY-MM-DD"
+published: "YYYY-MM or YYYY-MM-DD"
+preprint_date: "optional first-public preprint date"
 venue: "venue, arXiv, or unknown"
 paper_type: "model/method"
 topics:
@@ -59,6 +61,12 @@ paper. Prefer the full names printed in the paper or official source, preserve
 distinct laboratories or institutes when they are part of the affiliation, and
 deduplicate aliases. Do not use an author list as a substitute for
 institutions.
+
+For a formally published paper, `published` records the proceedings or journal
+publication date at the precision supported by the primary source. Record an
+earlier arXiv or other preprint release separately as `preprint_date`. If the
+paper exists only as a preprint, use that date for `published` and omit
+`preprint_date`.
 
 Keep `topics` and `contributions` to at most four values each. Contribution
 values are compact property tags, not mini-abstracts: use no more than four Han

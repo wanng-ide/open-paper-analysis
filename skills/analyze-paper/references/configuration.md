@@ -62,6 +62,8 @@ user. The only completed-analysis depth profile is `deep`.
 
 Notion property names live under `[notion.properties]`; fixed select values
 may live under `[notion.values]`. Read the live schema before mapping either.
+Map `published` and the optional `preprint_date` independently when both
+corresponding properties exist.
 
 `lark.parent_token` and `lark.parent_position` are mutually exclusive when
 the selected capability enforces that constraint. An empty target means the

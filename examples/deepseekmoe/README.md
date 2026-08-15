@@ -22,6 +22,8 @@ local path.
 Canonical `contributions` are deliberately rendered as four short property
 tags: `细粒专家`, `共享专家`, `消融验证`, and `规模扩展`. Their full claims and
 evidence remain in chapters 1 and 6 rather than being compressed into metadata.
+The metadata distinguishes the ACL publication month (`published: 2024-08`)
+from the first arXiv release (`preprint_date: 2024-01-11`).
 
 ## 中文
 
@@ -36,3 +38,5 @@ Notion 的 JSON 只表示脱敏后的逻辑属性，不是实际 API payload；�
 
 `contributions` 固定为 `细粒专家`、`共享专家`、`消融验证`、`规模扩展`
 四个短标签；完整贡献和证据仍在第 1、6 章展开，不塞进属性值。
+元数据将 ACL 正式发表月份（`published: 2024-08`）与 arXiv 首次公开日期
+（`preprint_date: 2024-01-11`）分开记录，避免混为同一日期。

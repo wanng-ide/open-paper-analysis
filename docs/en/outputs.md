@@ -18,6 +18,7 @@ judgment.
 Markdown is the default and universal fallback. It uses:
 
 - YAML metadata with official institutions, not an author list.
+- Separate formal publication and first-public preprint dates when both exist.
 - One to four compact contribution tags. Chinese tags use at most four Han
   characters and space-delimited tags use at most four words; detailed claims
   remain in the body.
@@ -56,8 +57,9 @@ contains no database ID, page ID, workspace schema, or account data.
 Feishu/Lark is a full publishing backend, not only an export file:
 
 1. The document title is set with the native title field.
-2. A compact two-column table presents institution, date, venue, type, and
-   canonical links.
+2. A compact two-column table presents institutions, formal publication,
+   first-public preprint date when distinct, venue, type, topics, compact
+   contributions, and canonical links.
 3. Native headings provide the document outline; no fabricated contents
    section is added.
 4. Equations, tables, links, and images use native XML/block types.

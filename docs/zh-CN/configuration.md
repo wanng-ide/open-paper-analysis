@@ -71,6 +71,9 @@ doc_format = "xml"
 `[notion.properties]` 把 canonical metadata 映射到实时数据库 schema；
 `[notion.values]` 可配置固定 select 值。未映射的可选字段直接跳过。
 
+实时 schema 同时提供对应属性时，将 `published` 映射为正式发表日期，
+将 `preprint_date` 独立映射为预印本首次公开日期。
+
 发布前必须读取实时 schema，不能假定另一个工作区的私有属性名。
 
 ### 飞书

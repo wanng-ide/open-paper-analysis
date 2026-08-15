@@ -73,6 +73,9 @@ template is optional. `[notion.properties]` maps canonical metadata to the
 live database schema; `[notion.values]` may contain fixed select values.
 Empty optional mappings are skipped.
 
+Map `published` to the formal publication property and `preprint_date` to a
+distinct first-public preprint property when both exist in the live schema.
+
 The publisher reads the live schema before writing. It never assumes private
 property names from another workspace.
 

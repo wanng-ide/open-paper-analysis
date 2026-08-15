@@ -39,7 +39,7 @@ Open Paper Analysis 可以接收论文链接、PDF、DOI、标题、项目页、
 | [腾讯 WorkBuddy](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market) | 在 Skills 界面导入 `skills/analyze-paper/` | 已核对官方技能包导入流程，本项目未执行 runtime 测试 |
 | [CodeBuddy IDE/CLI](https://www.codebuddy.cn/docs/cli/skills) | 安装到 `.codebuddy/skills` 或 `~/.codebuddy/skills` | 已核对官方加载路径，本项目未执行 runtime 测试 |
 | [OpenCode](https://opencode.ai/docs/skills/) | 安装到 `~/.config/opencode/skills` | 使用标准 Skill 目录，本项目未执行 runtime 测试 |
-| [MiniMax 驱动的 Agent](https://github.com/MiniMax-AI/skills) | 通过 Codex、Claude Code、OpenCode 等兼容宿主使用 | 取决于宿主，不宣称已经验证 MiniMax Agent 原生自定义 Skill 运行时 |
+| [MaxClaw](https://agent.minimax.io/activity/max-claw) | 当前账号支持自定义导入时使用 MaxClaw Skills，也可通过兼容宿主运行 | 已核对官方产品与 Skills 入口，本项目未执行 runtime 测试 |
 | 其他兼容 Agent | 让宿主读取 `skills/analyze-paper/SKILL.md`，或使用自定义 `--dest` 安装 | 取决于宿主的 Skill loader 与可用工具 |
 
 表中的“已核对”表示公开加载约定或技能包结构已经检查，不等于所有第三方运行
@@ -249,9 +249,9 @@ python -m unittest discover -s tests -v
 bash scripts/test-install.sh
 ```
 
-Claude Code、Kimi Code、OpenClaw、WorkBuddy、CodeBuddy、OpenCode 和直接
-MiniMax Agent 的 runtime 冒烟测试目前不属于 CI。兼容矩阵会明确展示这一
-边界，不用格式兼容暗示已经完成运行时验证。
+Claude Code、Kimi Code、OpenClaw、WorkBuddy、CodeBuddy、OpenCode 和
+MaxClaw 的 runtime 冒烟测试目前不属于 CI。兼容矩阵会明确展示这一边界，
+不用格式兼容暗示已经完成运行时验证。
 
 ## 安全
 

@@ -43,7 +43,7 @@ Any host that can load an Agent Skills-style directory can use the same source.
 | [Tencent WorkBuddy](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market) | Import `skills/analyze-paper/` from the Skills interface | Official package-import workflow reviewed; runtime not tested in this project |
 | [CodeBuddy IDE/CLI](https://www.codebuddy.cn/docs/cli/skills) | Install to `.codebuddy/skills` or `~/.codebuddy/skills` | Official loading paths reviewed; runtime not tested in this project |
 | [OpenCode](https://opencode.ai/docs/skills/) | Install to `~/.config/opencode/skills` | Standard Skill layout; runtime not tested in this project |
-| [MiniMax-powered agents](https://github.com/MiniMax-AI/skills) | Use the Skill through a compatible host such as Codex, Claude Code, or OpenCode | Host-dependent; no direct MiniMax Agent runtime claim |
+| [MaxClaw](https://agent.minimax.io/activity/max-claw) | Use MaxClaw's Skills surface when custom import is available, or run through a compatible host | Official product and Skills surface reviewed; runtime not tested in this project |
 | Other compatible agents | Point the host at `skills/analyze-paper/SKILL.md`, or install with a custom `--dest` | Compatibility depends on the host's Skill loader and available tools |
 
 "Reviewed" means the public loading contract or package structure has been
@@ -265,10 +265,9 @@ python -m unittest discover -s tests -v
 bash scripts/test-install.sh
 ```
 
-Claude Code, Kimi Code, OpenClaw, WorkBuddy, CodeBuddy, OpenCode, and direct
-MiniMax Agent runtime smoke tests are not currently part of CI. Their status is
-kept explicit in the compatibility table instead of being implied by format
-compatibility.
+Claude Code, Kimi Code, OpenClaw, WorkBuddy, CodeBuddy, OpenCode, and MaxClaw
+runtime smoke tests are not currently part of CI. Their status is kept explicit
+in the compatibility table instead of being implied by format compatibility.
 
 ## Security
 

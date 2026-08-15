@@ -132,7 +132,10 @@ metadata through `[notion.properties]` in the configuration.
 - Map canonical `institutions` to the configured institution property. Preserve
   official affiliation names, deduplicate aliases, and do not populate it with
   author names.
-- Keep topics and contributions to at most four options each.
+- Keep topics and contributions to at most four options each. Contribution
+  options are compact tags, not claim summaries: a Chinese value normally has
+  no more than four Han characters, and a space-delimited value no more than
+  four words.
 - Create a new option only when no existing option fits.
 - Do not assume English, Chinese, or any user's private property names.
 - Skip an unmapped optional property rather than failing the entire publish.

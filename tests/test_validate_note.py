@@ -53,6 +53,22 @@ class ValidateNoteTests(unittest.TestCase):
         errors = VALIDATOR.validate(text, "markdown", 5)
         self.assertTrue(any("duplicate figure/table" in error for error in errors))
 
+    def test_long_chinese_contribution_tag_is_rejected(self) -> None:
+        text = self.fixture("markdown.md").replace(
+            '  - "细粒专家"', '  - "在等计算约束下拆分专家"', 1
+        )
+        errors = VALIDATOR.validate(text, "markdown", 5)
+        self.assertTrue(any("Han characters" in error for error in errors))
+
+    def test_long_english_contribution_tag_is_rejected(self) -> None:
+        text = self.fixture("markdown.md").replace(
+            '  - "细粒专家"',
+            '  - "segmentation under equal compute and parameters"',
+            1,
+        )
+        errors = VALIDATOR.validate(text, "markdown", 5)
+        self.assertTrue(any("words" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

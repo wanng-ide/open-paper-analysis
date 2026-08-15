@@ -43,7 +43,7 @@ Use these keys across targets:
 - `venue`
 - `paper_type`
 - `topics`, with at most four values
-- `contributions`, with at most four values
+- `contributions`, with one to four compact tags rather than summary sentences
 - `project_url` when known
 - `code_url` when known
 - `status`
@@ -52,6 +52,13 @@ Use these keys across targets:
 
 Authors may be collected for identity resolution and citations, but they are
 not a substitute for `institutions` in portable note metadata.
+
+Treat each `contributions` value as a property tag. A Chinese tag should
+normally contain no more than four Han characters; a tag in a space-delimited
+language should contain no more than four words. Remove explanatory clauses,
+metrics, settings, and sentence punctuation. Put the complete contribution
+claims and their evidence in chapters `1` and `6`, where they can retain the
+necessary detail.
 
 ## Deep manuscript
 

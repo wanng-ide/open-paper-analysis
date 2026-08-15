@@ -8,6 +8,7 @@ cases:
       - Explains inputs, outputs, mechanism, training, and inference.
       - Uses primary sources and real numbered figure/table callouts.
       - Records official institutions in portable metadata instead of requiring an author list.
+      - Uses no more than four compact contribution tags; Chinese tags contain no more than four Han characters.
       - Drafts one evidence-complete manuscript before target rendering.
   - id: benchmark-from-pdf
     prompt: Analyze one dataset or benchmark paper from a PDF into Markdown.

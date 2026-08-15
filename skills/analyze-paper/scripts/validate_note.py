@@ -47,6 +47,11 @@ MARKDOWN_MEDIA_RE = re.compile(
     rf"> \[(?P<marker>{LABEL})\])\s*$",
     re.MULTILINE,
 )
+HAN_CHARACTER_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
+SPACE_DELIMITED_WORD_RE = re.compile(
+    r"[A-Za-z0-9]+(?:[-/][A-Za-z0-9]+)*"
+)
+SENTENCE_PUNCTUATION_RE = re.compile(r"[,.;:!?，。；：！？]")
 LARK_ALLOWED_TAGS = {
     "document",
     "title",
@@ -118,6 +123,55 @@ def frontmatter(text: str) -> str | None:
     return text[4:end]
 
 
+def yaml_block_list(metadata: str, key: str) -> list[str] | None:
+    match = re.search(
+        rf"^{re.escape(key)}:\s*\n(?P<body>(?:  - .+\n?)+)",
+        metadata,
+        re.MULTILINE,
+    )
+    if not match:
+        return None
+    return [
+        line.removeprefix("  - ").strip().strip("\"'")
+        for line in match.group("body").splitlines()
+    ]
+
+
+def validate_contribution_tags(metadata: str) -> list[str]:
+    values = yaml_block_list(metadata, "contributions")
+    if values is None:
+        return ["contributions must be a YAML block list of compact tags"]
+
+    errors: list[str] = []
+    if not 1 <= len(values) <= 4:
+        errors.append(
+            f"contributions contains {len(values)} tags; expected 1-4"
+        )
+
+    for value in values:
+        if not value:
+            errors.append("contribution tags must not be empty")
+            continue
+        if SENTENCE_PUNCTUATION_RE.search(value):
+            errors.append(
+                f"contribution tag uses sentence punctuation: {value!r}"
+            )
+        han_count = len(HAN_CHARACTER_RE.findall(value))
+        if han_count > 4:
+            errors.append(
+                f"Chinese contribution tag has {han_count} Han characters; "
+                f"expected at most 4: {value!r}"
+            )
+        elif han_count == 0:
+            word_count = len(SPACE_DELIMITED_WORD_RE.findall(value))
+            if word_count > 4:
+                errors.append(
+                    f"contribution tag has {word_count} words; "
+                    f"expected at most 4: {value!r}"
+                )
+    return errors
+
+
 def validate_forbidden(text: str) -> list[str]:
     errors: list[str] = []
     for label, pattern in FORBIDDEN_PATTERNS.items():
@@ -186,6 +240,7 @@ def validate_markdown_like(
                     errors.append(f"missing metadata key: {key}")
             if re.search(r"^authors:", metadata, re.MULTILINE):
                 errors.append("deprecated metadata key: authors; use institutions")
+            errors.extend(validate_contribution_tags(metadata))
         body = text[text.find("\n---\n", 4) + 5 :] if metadata is not None else text
         if not re.search(r"^# \S", body, re.MULTILINE):
             errors.append("missing visible paper title")

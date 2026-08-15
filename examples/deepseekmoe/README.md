@@ -19,17 +19,16 @@ judgment.
 | Target | Overview | Full capture or result | Canonical artifact |
 | --- | --- | --- | --- |
 | Markdown | [Overview PNG](screenshots/markdown.png) | [Read the complete note](markdown.md) | [Portable Markdown](markdown.md) |
-| Notion | Awaiting a privacy-safe current capture | Awaiting a privacy-safe current capture | [Enhanced Markdown body](notion.md) and [logical properties](notion-properties.json) |
+| Notion | [Overview JPG](screenshots/notion-overview.jpg) | [Full-length JPG](screenshots/notion-full.jpg) | [Enhanced Markdown body](notion.md) and [logical properties](notion-properties.json) |
 | Feishu/Lark | [Overview JPG](screenshots/lark-overview.jpg) | [Full-length JPG](screenshots/lark-full.jpg) | [Native XML document](lark.xml) |
 | Shared evidence | [Media preview and license data](media.yaml) | Six extracted visuals and two exact-label markers | [Media and license manifest](media.yaml) |
 
-The Feishu/Lark images are real platform captures of the current canonical
-manuscript. The Markdown image is a rendered overview, with the complete
-portable note linked beside it. The available Notion source captures are not
-published because they contain a personal recorder property and comment UI,
-and represent an earlier manuscript revision. The Notion body and logical
-properties remain fully inspectable and validated while a clean capture is
-prepared.
+The Feishu/Lark and Notion images are real platform captures. The Markdown
+image is a rendered overview, with the complete portable note linked beside
+it. The Notion captures retain the visible recorder property and comment UI
+with the owner's explicit approval; they show the page state at capture time.
+The Notion body and logical properties remain the canonical verification
+artifacts.
 
 ### Suggested Reading Path
 
@@ -93,11 +92,13 @@ Notion follows the
 and Feishu/Lark follows the
 [official document block model](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/guide).
 
-Screenshots are presentation aids rather than the source of truth. Published
-captures must match the canonical manuscript and exclude account chrome,
-comments, avatars, personal properties, workspace names, page or document IDs,
-and local paths. User-provided raw captures remain in the gitignored
-`screenshots/source/` staging directory until they pass that review.
+Screenshots are presentation aids rather than the source of truth. By default,
+published captures exclude account chrome, comments, avatars, personal
+properties, workspace names, page or document IDs, and local paths. Visible
+display metadata may remain only with explicit owner approval, as in the
+Notion captures here; private identifiers, credentials, and authentication
+data are never eligible for that exception. User-provided raw captures remain
+in the gitignored `screenshots/source/` staging directory until reviewed.
 
 ## 中文说明
 
@@ -118,15 +119,14 @@ Language Models* 只完成一次资料收集、证据整理和研究判断，然
 | 输出目标 | Overview | Full 截图或完整结果 | Canonical 工件 |
 | --- | --- | --- | --- |
 | Markdown | [概览 PNG](screenshots/markdown.png) | [阅读完整笔记](markdown.md) | [可移植 Markdown](markdown.md) |
-| Notion | 等待与当前主稿一致的脱敏截图 | 等待与当前主稿一致的脱敏截图 | [Enhanced Markdown 正文](notion.md)与[逻辑属性](notion-properties.json) |
+| Notion | [概览 JPG](screenshots/notion-overview.jpg) | [完整长图 JPG](screenshots/notion-full.jpg) | [Enhanced Markdown 正文](notion.md)与[逻辑属性](notion-properties.json) |
 | 飞书文档 | [概览 JPG](screenshots/lark-overview.jpg) | [完整长图 JPG](screenshots/lark-full.jpg) | [原生 XML 文档](lark.xml) |
 | 共享证据 | [媒体与许可概览](media.yaml) | 6 个提取图表与 2 个准确编号 marker | [媒体与许可清单](media.yaml) |
 
-飞书的 Overview 与 Full 都是当前 canonical 主稿的真实平台截图；Markdown
-提供适合快速浏览的渲染图，完整内容直接链接到可移植成品。现有 Notion 原始
-截图包含个人“记录者”属性与评论头像，而且对应较早的正文版本，因此不会直接
-发布到公开仓库。等待重新截图期间，Notion 正文与逻辑属性仍然完整公开，并由
-自动校验器检查。
+飞书和 Notion 的 Overview、Full 都是真实平台截图；Markdown 提供适合快速
+浏览的渲染图，完整内容直接链接到可移植成品。Notion 截图保留了“记录者”属性
+与评论界面，已经得到所有者明确同意；它记录的是截图时页面的实际状态。
+Notion 正文与逻辑属性仍然是自动校验使用的 canonical 工件。
 
 ### 建议阅读顺序
 
@@ -196,8 +196,9 @@ Canonical 工件是验证源，截图只是展示平台原生排版的辅助材�
 payload；飞书 fixture 使用公开文档支持的 XML 标签。公开工件不包含页面 ID、
 文档 token、私有 schema、签名 URL、账号身份、凭据或本地路径。
 
-公开截图必须同时满足三个条件：与当前 canonical 主稿一致；不显示账号栏、
-评论、头像、个人属性、工作区名称、页面或文档 ID；不会让读者误以为截图就是
-API fixture。论文原始图表放在 [`assets/`](assets/)，平台截图放在
+公开截图默认不显示账号栏、评论、头像、个人属性、工作区名称、页面或文档 ID，
+并且不能让读者误以为截图就是 API fixture。得到所有者明确授权后，可以保留
+可见展示信息，本案例的 Notion 截图即属于这种情况；私有 ID、凭据和认证数据
+永远不在例外范围内。论文原始图表放在 [`assets/`](assets/)，平台截图放在
 [`screenshots/`](screenshots/)，用户提供但尚未审核的原图放在被 Git 忽略的
 `screenshots/source/`，三者不会混在一起。

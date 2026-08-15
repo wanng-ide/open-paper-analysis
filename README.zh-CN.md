@@ -85,13 +85,14 @@ model/method 论文分析，不是缩短版 demo。它展示同一份主稿如�
 | 输出目标 | Overview | Full 截图或完整结果 | Canonical 工件 |
 | --- | --- | --- | --- |
 | Markdown | [概览 PNG](examples/deepseekmoe/screenshots/markdown.png) | [完整笔记](examples/deepseekmoe/markdown.md) | [可移植 Markdown](examples/deepseekmoe/markdown.md) |
-| Notion | 等待与当前主稿一致的脱敏截图 | 等待与当前主稿一致的脱敏截图 | [Enhanced Markdown](examples/deepseekmoe/notion.md)与[逻辑属性](examples/deepseekmoe/notion-properties.json) |
+| Notion | [概览 JPG](examples/deepseekmoe/screenshots/notion-overview.jpg) | [完整长图 JPG](examples/deepseekmoe/screenshots/notion-full.jpg) | [Enhanced Markdown](examples/deepseekmoe/notion.md)与[逻辑属性](examples/deepseekmoe/notion-properties.json) |
 | 飞书文档 | [概览 JPG](examples/deepseekmoe/screenshots/lark-overview.jpg) | [完整长图 JPG](examples/deepseekmoe/screenshots/lark-full.jpg) | [原生 XML](examples/deepseekmoe/lark.xml) |
 | 共享证据 | [媒体清单](examples/deepseekmoe/media.yaml) | 6 个提取图表与 2 个 marker | [来源与许可](examples/deepseekmoe/media.yaml) |
 
-公开截图与 fixture 不包含工作区 URL、页面 ID、文档 token、签名媒体 URL、
-凭据、账号身份或本地路径。更详细的阅读顺序、三端对应关系和截图审核边界见
-[完整案例指南](examples/deepseekmoe/README.md)。
+Canonical fixture 不包含工作区 URL、页面 ID、文档 token、签名媒体 URL、
+凭据、账号身份或本地路径。Notion 截图保留了经所有者明确同意公开的记录者
+和评论可见信息，但不包含私有标识符或认证数据。更详细的阅读顺序、三端对应
+关系和截图审核边界见[完整案例指南](examples/deepseekmoe/README.md)。
 
 ## 输出内容
 
@@ -255,8 +256,9 @@ MiniMax Agent 的 runtime 冒烟测试目前不属于 CI。兼容矩阵会明确
 ## 安全
 
 发布 fixture 或配置前请阅读 [SECURITY.md](SECURITY.md)。不要提交 API key、
-OAuth token、cookie、私有数据库或页面 ID、个人属性 schema、签名媒体 URL、
-账号信息或本地路径。
+OAuth token、cookie、私有数据库或页面 ID、个人属性 schema、签名媒体 URL
+或本地路径。文档截图只有在得到所有者明确授权时才可保留可见账号或评论信息，
+而且不得暴露私有标识符或认证数据。
 
 ## 许可证
 

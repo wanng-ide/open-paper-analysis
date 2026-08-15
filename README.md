@@ -26,6 +26,30 @@ independent rewrites.
 | Permission-aware media | Marker mode is default. Extraction is limited to open-license, user-provided, or explicitly approved assets. |
 | Privacy by design | Public files contain no credentials, private IDs, personal schema, signed media URLs, account data, or local paths. |
 
+## Worked Example
+
+Start with the [DeepSeekMoE worked example](examples/deepseekmoe/README.md) to
+inspect the project end to end. It is a complete Chinese model/method analysis,
+not a shortened demo: one evidence-grounded manuscript is rendered to portable
+Markdown, Notion enhanced Markdown, and Feishu/Lark XML while preserving the
+same identity, chapter meaning, metrics, limitations, and research judgment.
+
+The example is useful for three different kinds of inspection:
+
+- **Read the result:** open the
+  [portable Markdown note](examples/deepseekmoe/markdown.md).
+- **Compare backends:** inspect the
+  [Notion body](examples/deepseekmoe/notion.md),
+  [logical properties](examples/deepseekmoe/notion-properties.json), and
+  [Lark XML](examples/deepseekmoe/lark.xml).
+- **Audit the evidence:** review the
+  [media and license manifest](examples/deepseekmoe/media.yaml), including six
+  extracted CC BY 4.0 visuals and two marker fallbacks.
+
+The case also demonstrates paper-specific chapters, compact metadata tags,
+formal-publication versus first-preprint dates, native equations and media, and
+the boundary between reported evidence and the agent's research judgment.
+
 ## Workflow
 
 ```mermaid
@@ -79,25 +103,6 @@ Without configuration, the Skill writes
 `~/.config/open-paper-analysis/config.toml` to set outputs, destinations,
 property mappings, or media behavior. Credentials never belong in this file.
 
-## Golden Example
-
-The [DeepSeekMoE golden example](examples/deepseekmoe/README.md) renders one
-Chinese model/method analysis to:
-
-- [Portable Markdown](examples/deepseekmoe/markdown.md)
-- [Sanitized Notion enhanced Markdown](examples/deepseekmoe/notion.md)
-- [Feishu/Lark native XML](examples/deepseekmoe/lark.xml)
-- [Shared media and license manifest](examples/deepseekmoe/media.yaml)
-
-It includes six selected CC BY 4.0 visuals, two marker fallbacks, equations,
-paper-specific chapters, limitations, and research judgment. Sanitized
-body-only screenshots are included for all three targets.
-
-Notion rendering follows the
-[official enhanced Markdown format](https://developers.notion.com/guides/data-apis/enhanced-markdown).
-Feishu rendering uses the
-[official document block model](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/guide).
-
 ## Documentation
 
 - [Getting started](docs/en/getting-started.md)
@@ -126,8 +131,10 @@ enhanced Markdown，保持克制的学术笔记风格；飞书使用原生标题
 信息表、标题大纲、公式、图片和表格。每个目标独立报告成功、部分完成或
 阻塞，不会因为一个远程后端失败而撤销其他成果。
 
-完整中文指南见[中文文档入口](docs/zh-CN/README.md)，三端效果见
-[DeepSeekMoE 示例](examples/deepseekmoe/README.md)。
+完整中文指南见[中文文档入口](docs/zh-CN/README.md)。建议先阅读
+[DeepSeekMoE 完整案例](examples/deepseekmoe/README.md)：它同时提供可直接
+阅读的 Markdown 成品、脱敏的 Notion/Lark canonical 工件，以及共享的图表
+与许可清单，比单张截图更适合判断 Skill 的真实分析深度。
 
 ## Development
 

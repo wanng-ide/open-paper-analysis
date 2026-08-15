@@ -10,7 +10,7 @@ skills/analyze-paper/       唯一跨 Agent canonical Skill
   references/               内容、质量、媒体和后端契约
   assets/                   公开配置示例
   scripts/                  工件验证器
-examples/deepseekmoe/       三端 golden example 与开放媒体
+examples/deepseekmoe/       三端完整案例与开放媒体
 evals/cases.yaml            行为评测矩阵
 scripts/                    安装器与仓库检查
 docs/en, docs/zh-CN         镜像指南

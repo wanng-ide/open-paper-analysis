@@ -27,8 +27,8 @@ Markdown is the default and universal fallback. It uses:
 - Standard equations, tables, links, and stable relative image paths.
 - No Notion tags or Lark XML.
 
-[Markdown example](../../examples/deepseekmoe/markdown.md) |
-[body screenshot](../../examples/deepseekmoe/screenshots/markdown.png)
+[Canonical Markdown example](../../examples/deepseekmoe/markdown.md) |
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 ## Notion
 
@@ -47,7 +47,7 @@ callouts, columns, cover, or decorative color.
 
 [Sanitized enhanced-Markdown example](../../examples/deepseekmoe/notion.md) |
 [logical property fixture](../../examples/deepseekmoe/notion-properties.json) |
-[body screenshot](../../examples/deepseekmoe/screenshots/notion.png)
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 The property fixture describes canonical values, not a Notion API payload. It
 contains no database ID, page ID, workspace schema, or account data.
@@ -66,8 +66,8 @@ Feishu/Lark is a full publishing backend, not only an export file:
 5. Long documents are created as a skeleton and filled serially by the same
    agent, then read back.
 
-[Lark XML example](../../examples/deepseekmoe/lark.xml) |
-[body screenshot](../../examples/deepseekmoe/screenshots/lark.png)
+[Canonical Lark XML example](../../examples/deepseekmoe/lark.xml) |
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 ## Capability and fallback order
 

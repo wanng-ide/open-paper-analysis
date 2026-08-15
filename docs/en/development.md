@@ -10,7 +10,7 @@ skills/analyze-paper/       Canonical cross-agent Skill
   references/               Content, quality, media, and backend contracts
   assets/                   Public configuration example
   scripts/                  Artifact validator
-examples/deepseekmoe/       Three-target golden example and open media
+examples/deepseekmoe/       Three-target worked example and open media
 evals/cases.yaml            Behavioral evaluation matrix
 scripts/                    Installer and repository checks
 docs/en, docs/zh-CN         Mirrored guides

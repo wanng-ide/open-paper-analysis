@@ -24,8 +24,8 @@ Markdown 是默认输出，也是通用保底：
 - 使用标准公式、表格、链接和稳定相对图片路径。
 - 不混入 Notion 标签或飞书 XML。
 
-[Markdown 示例](../../examples/deepseekmoe/markdown.md) |
-[正文截图](../../examples/deepseekmoe/screenshots/markdown.png)
+[Canonical Markdown 示例](../../examples/deepseekmoe/markdown.md) |
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 ## Notion
 
@@ -43,7 +43,7 @@ Notion 使用官方 enhanced Markdown，并通过结构化调用写入属性：
 
 [脱敏 enhanced-Markdown 示例](../../examples/deepseekmoe/notion.md) |
 [逻辑属性 fixture](../../examples/deepseekmoe/notion-properties.json) |
-[正文截图](../../examples/deepseekmoe/screenshots/notion.png)
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 属性 fixture 表示 canonical 值，不是 Notion API payload；其中没有
 database ID、page ID、工作区 schema 或账号信息。
@@ -59,8 +59,8 @@ database ID、page ID、工作区 schema 或账号信息。
 4. 公式、表格、链接、图片使用原生 XML/block。
 5. 长文先建骨架，再由同一 Agent 串行写入并读回。
 
-[飞书 XML 示例](../../examples/deepseekmoe/lark.xml) |
-[正文截图](../../examples/deepseekmoe/screenshots/lark.png)
+[Canonical 飞书 XML 示例](../../examples/deepseekmoe/lark.xml) |
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 ## 能力与回退顺序
 

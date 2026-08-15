@@ -1,4 +1,4 @@
 interface:
   display_name: "Analyze Paper"
-  short_description: "Turn research papers into evidence-grounded notes"
-  default_prompt: "Use $analyze-paper to analyze this research paper and produce a verified Markdown note."
+  short_description: "Deep paper analysis for Markdown, Notion, and Lark"
+  default_prompt: "Use $analyze-paper to analyze this research paper deeply, draft one evidence-grounded manuscript, and render every requested output."

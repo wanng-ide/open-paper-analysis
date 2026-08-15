@@ -39,11 +39,36 @@ jobs:
           bash -n scripts/install.sh
           bash -n scripts/test-install.sh
           python -m py_compile scripts/check_markdown_links.py
+          python -m py_compile scripts/check_docs_parity.py
+          python -m py_compile scripts/check_public_artifacts.py
+          python -m py_compile scripts/validate_examples.py
           python -m py_compile skills/analyze-paper/scripts/validate_note.py
-      - name: Check Markdown links
-        run: python scripts/check_markdown_links.py
-      - name: Validate public example
-        run: python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe.md
+      - name: Check repository documentation and public artifacts
+        run: |
+          python scripts/check_markdown_links.py
+          python scripts/check_docs_parity.py
+          python scripts/check_public_artifacts.py
+      - name: Validate three-target golden example
+        run: |
+          python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/markdown.md
+          python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/notion.md
+          python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/lark.xml
+          python scripts/validate_examples.py
+      - name: Test validators
+        run: python -m unittest discover -s tests -v
+      - name: Check screenshot dimensions
+        run: |
+          python - <<'PY'
+          import struct
+          from pathlib import Path
+
+          for name in ("markdown.png", "notion.png", "lark.png"):
+              path = Path("examples/deepseekmoe/screenshots") / name
+              data = path.read_bytes()
+              assert data[:8] == b"\x89PNG\r\n\x1a\n", name
+              width, height = struct.unpack(">II", data[16:24])
+              assert (width, height) == (1320, 1400), (name, width, height)
+          PY
       - name: Test installer
         run: bash scripts/test-install.sh
       - name: Parse example configuration
@@ -55,7 +80,15 @@ jobs:
           path = Path("skills/analyze-paper/assets/config.example.toml")
           with path.open("rb") as handle:
               config = tomllib.load(handle)
-          assert config["version"] == 1
-          assert config["defaults"]["output"] == "markdown"
-          assert config["notion"]["enabled"] is False
+          assert config["version"] == 2
+          assert config["defaults"]["outputs"] == ["markdown"]
+          assert config["defaults"]["depth"] == "deep"
+          assert config["media"] == {
+              "mode": "markers",
+              "max_items": 6,
+              "license_policy": "open-or-approved",
+          }
+          assert config["markdown"]["notes_directory"] == "paper-notes"
+          assert "enabled" not in config["notion"]
+          assert config["lark"]["doc_format"] == "xml"
           PY

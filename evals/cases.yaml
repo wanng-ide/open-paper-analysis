@@ -1,13 +1,14 @@
-version: 1
+version: 2
 skill: analyze-paper
 cases:
   - id: method-from-arxiv
-    prompt: Analyze one model or method paper from its arXiv URL into Markdown.
+    prompt: Analyze one model or method paper from its arXiv URL with the deep profile.
     checks:
       - Classifies the paper as model/method.
       - Explains inputs, outputs, mechanism, training, and inference.
       - Uses primary sources and real numbered figure/table callouts.
       - Records official institutions in portable metadata instead of requiring an author list.
+      - Drafts one evidence-complete manuscript before target rendering.
   - id: benchmark-from-pdf
     prompt: Analyze one dataset or benchmark paper from a PDF into Markdown.
     checks:
@@ -33,6 +34,31 @@ cases:
     checks:
       - Matches by DOI, arXiv ID, URL, or exact title.
       - Preserves custom sections, images, links, and user annotations.
+  - id: multi-output-three-targets
+    prompt: Analyze one paper once and produce Markdown, Notion, and Feishu/Lark.
+    checks:
+      - Uses one shared manuscript rather than writing three independent analyses.
+      - Preserves chapter titles, source URLs, metrics, and evidence labels across targets.
+      - Returns independent status, artifact, operation, media, and verification for every target.
+  - id: notion-native-style
+    prompt: Publish a deep paper note to a configured Notion database.
+    checks:
+      - Maps canonical metadata through the live schema and uses institutions rather than authors.
+      - Starts the body with 目录, a native table of contents, and 参考.
+      - Uses continuous academic paragraphs without default callouts, columns, cover, or decorative color.
+      - Reads the page back and does not persist private IDs or signed media URLs.
+  - id: lark-native-publish
+    prompt: Publish a deep paper note to a configured Feishu/Lark destination.
+    checks:
+      - Uses a native title, compact metadata table, heading outline, and chapters 0 through 8.
+      - Uses native equations, tables, links, and media blocks when available.
+      - Creates long content serially from one manuscript and reads the document back.
+  - id: update-existing-platform-page
+    prompt: Update an existing Notion page or Lark document with newer primary evidence.
+    checks:
+      - Confirms a unique DOI, arXiv ID, canonical URL, or exact title match.
+      - Preserves user images, attachments, embeds, annotations, child content, and custom sections.
+      - Uses targeted updates unless full replacement is proven safe.
   - id: duplicate-ambiguity
     prompt: Analyze a paper when two destination notes plausibly match.
     checks:
@@ -42,8 +68,44 @@ cases:
     checks:
       - Completes the Markdown artifact.
       - Reports partial publishing status without inventing a page URL.
+  - id: lark-unavailable
+    prompt: Publish a paper note to Feishu/Lark when no Lark capability is available.
+    checks:
+      - Completes the Markdown artifact and may retain sanitized offline XML.
+      - Reports the Lark target as partial without inventing a document URL.
+  - id: marker-media
+    prompt: Analyze a paper with the default media configuration.
+    checks:
+      - Uses exact numbered Figure/Table markers and immediate analysis.
+      - Does not extract, upload, or leave media authoring instructions.
+  - id: extract-open-media
+    prompt: Analyze an open-license paper with media mode set to extract.
+    checks:
+      - Selects no more than the configured maximum of useful visuals.
+      - Verifies formal labels, captions, source locations, and license provenance.
+      - Uses relative Markdown assets and native platform uploads without signed URLs in fixtures.
+  - id: extract-media-permission-denied
+    prompt: Extract figures from a paper whose reuse permission is not established.
+    checks:
+      - Falls back to numbered markers.
+      - Reports the permission boundary without treating PDF access as a license.
+  - id: partial-target-failure
+    prompt: Produce Markdown, Notion, and Lark when one remote backend fails.
+    checks:
+      - Keeps and verifies every successful target.
+      - Does not roll back Markdown or report a failed remote target as success.
   - id: read-only-environment
     prompt: Analyze a paper when filesystem writes are unavailable.
     checks:
       - Returns complete Markdown in the response.
       - Does not treat missing file writes as failed analysis.
+  - id: version-one-configuration
+    prompt: Analyze a paper using an existing version 1 configuration.
+    checks:
+      - Maps output and notes_directory to version 2 semantics without rewriting the file.
+      - Honors notion.enabled only when the current request does not choose outputs.
+  - id: short-position-paper
+    prompt: Deeply analyze a short position paper with limited empirical evidence.
+    checks:
+      - Exhausts the available argument and evidence without inventing experiments.
+      - Uses fewer subsections or evidence anchors when that is faithful to the paper.

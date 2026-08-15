@@ -4,15 +4,17 @@
 
 - Destination and naming
 - Metadata contract
+- Visible document structure
 - Body contract
+- Media rendering
 - Duplicate handling
 - Safe updates
 - Read-back verification
 
 ## Destination and naming
 
-Use an explicit user path when provided. Otherwise use the configured
-`notes_directory`; default to `paper-notes`.
+Use an explicit user path when provided. Otherwise use `[markdown].notes_directory`;
+default to `paper-notes`.
 
 Choose `<paper-slug>` in this order:
 
@@ -65,34 +67,79 @@ there is not enough evidence for a useful personal judgment.
 Use canonical URLs. Keep credentials, local tool configuration, private
 database IDs, and scratch paths out of metadata.
 
+## Visible document structure
+
+After frontmatter, render a visible document title and a linked contents list.
+Use standard portable Markdown rather than Notion or Lark tags:
+
+```markdown
+# Exact paper title
+
+## Contents
+
+- [Sources](#sources)
+- [0 Short take](#0-short-take)
+- [1 Summary](#1-summary)
+...
+
+## Sources
+```
+
+Keep the title at level 1, chapters at level 2, and chapter subsections at
+level 3. Link labels and anchors may follow the user's language.
+
 ## Body contract
 
 Use headings in the user's language while preserving numeric anchors:
 
 ```markdown
-# Sources
+## Sources
 
-# 0 Short take
+## 0 Short take
 
-# 1 Summary
+## 1 Summary
 
-# 2 Background and positioning
+## 2 Background and positioning
 
-# 3 <Paper-specific mechanism, construction, system, or argument>
+## 3 <Paper-specific mechanism, construction, system, or argument>
 
-# 4 <Paper-specific evidence>
+## 4 <Paper-specific evidence>
 
-# 5 Limitations and boundaries
+## 5 Limitations and boundaries
 
-# 6 Conclusion
+## 6 Conclusion
 
-# 7 Research judgment
+## 7 Research judgment
 
-# 8 Follow-up references
+## 8 Follow-up references
 ```
 
 Put only source links and short source labels under `Sources`. Use the quality
 standard for chapter depth and figure/table callouts.
+
+## Media rendering
+
+Follow the shared media policy.
+
+In marker mode:
+
+```markdown
+> [Figure 1]
+
+Figure 1 shows ... It supports ... It does not establish ...
+```
+
+In extract mode:
+
+```markdown
+![Figure 1: concise official caption](assets/paper-slug/figure-1.png)
+
+**Figure 1.** Figure 1 shows ... It supports ... It does not establish ...
+```
+
+Use relative paths under the configured assets directory. Include provenance
+and license information in a nearby source note or media manifest. Never place
+an expiring platform URL in Markdown.
 
 ## Duplicate handling
 
@@ -126,9 +173,11 @@ Read the written file from disk, not the in-memory draft. Confirm:
 - The path and slug are correct.
 - YAML frontmatter is closed and contains required metadata, including official
   institutions rather than an author list.
-- `Sources` and chapters `0` through `8` are present.
+- A visible title, linked contents, `Sources`, and chapters `0` through `8` are
+  present.
 - Chapters `3` and `4` are paper-specific.
-- Figure/table callouts are real, numbered, and analyzed.
+- Figure/table markers or extracted media are real, numbered, and analyzed.
+- No Notion enhanced-Markdown tags or Lark XML tags remain.
 - No existing user media or custom content was accidentally lost.
 - No authoring instructions or scratch text remain.
 

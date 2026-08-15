@@ -1,0 +1,56 @@
+version: 1
+paper: DeepSeekMoE
+source:
+  title: "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models"
+  url: https://aclanthology.org/2024.acl-long.70/
+  pdf_url: https://aclanthology.org/2024.acl-long.70.pdf
+  license: CC BY 4.0
+  license_url: https://creativecommons.org/licenses/by/4.0/
+selection:
+  mode: extract
+  max_items: 6
+assets:
+  - id: figure-1
+    file: assets/figure-1.png
+    sha256: a1384dee81fec55c53ffbce9cdcd1d69a789d50fc2e27783a08e79c09762e16e
+    label: Figure 1
+    page: 3
+    purpose: Core architecture and the two structural changes.
+  - id: table-1
+    file: assets/table-1.png
+    sha256: 465dfa8b3e71fd9528a83b93f67a935aa59e355d0dcdcaed72901e5bbc3ed65e
+    label: Table 1
+    page: 5
+    purpose: Controlled 2B comparison under matched training settings.
+  - id: table-3
+    file: assets/table-3.png
+    sha256: dad8a4a08156ffc1ae25c8f4bcff312872fa1edd61195066afa94b661a26aeb0
+    label: Table 3
+    page: 16
+    purpose: Larger GShard and dense-capacity comparisons.
+  - id: figure-2
+    file: assets/figure-2.png
+    sha256: a9649f2c8209a44bd535bf74cf6fac6c9f8cfcfbf9dc8056c004cf958ec798f9
+    label: Figure 2
+    page: 5
+    purpose: Shared-expert and expert-granularity ablations.
+  - id: figure-3
+    file: assets/figure-3.png
+    sha256: 2737201aadaa37dcbf92588ea850acf1870c7822a90bf33e01ad561fd7b58d64
+    label: Figure 3
+    page: 6
+    purpose: Functional proxy for routed-expert redundancy.
+  - id: table-2
+    file: assets/table-2.png
+    sha256: bd55be16bbc995234517c50e58e655fd85288ab3e2ce0295edddea1ea696bce4
+    label: Table 2
+    page: 8
+    purpose: Capability and compute comparison at the 16B scale.
+markers:
+  - label: Figure 4
+    reason: Retained as a numbered marker to demonstrate mixed media fallback.
+  - label: Figure 5
+    reason: Retained as a numbered marker to demonstrate mixed media fallback.
+attribution: >-
+  Cropped from the ACL 2024 official PDF. Copyright remains with the paper
+  authors. Reused under CC BY 4.0 with source and license attribution.

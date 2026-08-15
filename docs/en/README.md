@@ -6,6 +6,11 @@ Open Paper Analysis is a portable Agent Skill for deep, evidence-grounded
 analysis of one research paper. It builds one semantic manuscript and renders
 that manuscript to Markdown, Notion, Feishu/Lark, or any requested combination.
 
+Start with the complete three-target
+[DeepSeekMoE worked example](../../examples/deepseekmoe/README.md). It links
+the readable note, canonical backend fixtures, evidence manifest, and visual
+capture policy in one place.
+
 ## Guides
 
 - [Getting started](getting-started.md): install, invoke, and understand a run.
@@ -17,7 +22,3 @@ that manuscript to Markdown, Notion, Feishu/Lark, or any requested combination.
   evidence anchors, extraction permissions, updates, and privacy.
 - [Development](development.md): repository structure, validation, evaluation,
   live smoke tests, and contribution workflow.
-
-The complete three-target
-[DeepSeekMoE golden example](../../examples/deepseekmoe/README.md) shows the
-same paper rendered for every backend.

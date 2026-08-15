@@ -8,3 +8,6 @@ __pycache__/
 *.pem
 credentials.json
 secrets.json
+
+# User-provided platform captures may contain private workspace metadata.
+examples/*/screenshots/source/

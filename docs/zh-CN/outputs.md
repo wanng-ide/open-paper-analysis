@@ -16,6 +16,7 @@ Figure/Table 编号，以及“论文报告”与“个人判断”的边界。
 Markdown 是默认输出，也是通用保底：
 
 - YAML 元数据记录正式单位，而不是以作者列表代替。
+- 同时存在正式版本和预印本时，分别记录正式发表与首次公开日期。
 - `contributions` 使用 1-4 个短标签，中文标签通常不超过 4 个汉字，
   空格分词语言不超过 4 个词；完整贡献及证据留在正文中说明。
 - 显示论文标题和可点击目录。
@@ -23,8 +24,8 @@ Markdown 是默认输出，也是通用保底：
 - 使用标准公式、表格、链接和稳定相对图片路径。
 - 不混入 Notion 标签或飞书 XML。
 
-[Markdown 示例](../../examples/deepseekmoe/markdown.md) |
-[正文截图](../../examples/deepseekmoe/screenshots/markdown.png)
+[Canonical Markdown 示例](../../examples/deepseekmoe/markdown.md) |
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 ## Notion
 
@@ -42,7 +43,7 @@ Notion 使用官方 enhanced Markdown，并通过结构化调用写入属性：
 
 [脱敏 enhanced-Markdown 示例](../../examples/deepseekmoe/notion.md) |
 [逻辑属性 fixture](../../examples/deepseekmoe/notion-properties.json) |
-[正文截图](../../examples/deepseekmoe/screenshots/notion.png)
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 属性 fixture 表示 canonical 值，不是 Notion API payload；其中没有
 database ID、page ID、工作区 schema 或账号信息。
@@ -52,13 +53,14 @@ database ID、page ID、工作区 schema 或账号信息。
 飞书是一等发布后端，不只是 XML 导出：
 
 1. 使用原生文档标题。
-2. 顶部两列表紧凑展示单位、日期、venue、论文类型和 canonical links。
+2. 顶部两列表紧凑展示单位、正式发表、首次公开（若不同）、venue、论文
+   类型、主题、短贡献和 canonical links。
 3. 用原生标题大纲导航，不伪造目录。
 4. 公式、表格、链接、图片使用原生 XML/block。
 5. 长文先建骨架，再由同一 Agent 串行写入并读回。
 
-[飞书 XML 示例](../../examples/deepseekmoe/lark.xml) |
-[正文截图](../../examples/deepseekmoe/screenshots/lark.png)
+[Canonical 飞书 XML 示例](../../examples/deepseekmoe/lark.xml) |
+[完整案例说明](../../examples/deepseekmoe/README.md)
 
 ## 能力与回退顺序
 

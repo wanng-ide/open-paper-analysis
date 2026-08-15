@@ -39,7 +39,9 @@ Use these keys across targets:
 - `pdf_url` when known
 - `arxiv_url` when known
 - `doi` when known
-- `published`
+- `published`, the canonical or formal publication date at the precision
+  supported by the primary source
+- `preprint_date` when the first public preprint date differs from `published`
 - `venue`
 - `paper_type`
 - `topics`, with at most four values
@@ -52,6 +54,13 @@ Use these keys across targets:
 
 Authors may be collected for identity resolution and citations, but they are
 not a substitute for `institutions` in portable note metadata.
+
+When a paper has both a preprint and a formal proceedings or journal version,
+use the formal version's publication date for `published` and preserve the
+earliest public preprint date separately as `preprint_date`. Do not invent a
+day when the authoritative venue source provides only a month. If no formal
+version exists, use the preprint date for `published` and omit
+`preprint_date`.
 
 Treat each `contributions` value as a property tag. A Chinese tag should
 normally contain no more than four Han characters; a tag in a space-delimited

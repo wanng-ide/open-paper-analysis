@@ -47,8 +47,10 @@ Markdown when the capability supports them.
 
 - Set the document title separately. Do not repeat the exact title as the first
   body heading.
-- Begin with a compact two-column metadata table for institution, date, venue,
-  paper type, and canonical links. Omit empty rows.
+- Begin with a compact two-column metadata table for institutions, formal
+  publication date, distinct first-public preprint date when known, venue,
+  paper type, topics, compact contributions, and canonical links. Omit empty
+  rows.
 - Use the native heading outline instead of a fabricated table-of-contents
   section.
 - Follow with `参考` and chapters `0` through `8`.

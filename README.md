@@ -1,39 +1,140 @@
+<div align="center">
+
 # Open Paper Analysis
 
-[English documentation](docs/en/README.md) |
-[中文文档](docs/zh-CN/README.md)
+**Read one paper deeply. Publish one verified manuscript everywhere.**
 
-An open, portable Agent Skill for deep, evidence-grounded analysis of one
-research paper. It creates one semantic manuscript and renders that same
-manuscript to Markdown, Notion, Feishu/Lark, or several targets in one run.
+A portable Agent Skill for evidence-grounded research notes in Markdown,
+Notion, and Feishu/Lark.
 
-Markdown remains the zero-configuration default and universal fallback.
-Notion and Feishu/Lark are first-class native publishing backends rather than
-independent rewrites.
+[![Validate](https://github.com/wanng-ide/open-paper-analysis/actions/workflows/validate.yml/badge.svg)](https://github.com/wanng-ide/open-paper-analysis/actions/workflows/validate.yml)
+[![Agent Skill](https://img.shields.io/badge/Agent%20Skill-portable-0f766e)](skills/analyze-paper/SKILL.md)
+[![Outputs](https://img.shields.io/badge/outputs-Markdown%20%7C%20Notion%20%7C%20Feishu-2563eb)](docs/en/outputs.md)
+[![License](https://img.shields.io/badge/license-Apache--2.0-111827)](LICENSE)
 
-## Features
+[English](README.md) | [简体中文](README.zh-CN.md) |
+[Documentation](docs/en/README.md) |
+[Worked example](examples/deepseekmoe/README.md)
+
+</div>
+
+Open Paper Analysis turns a paper, PDF, DOI, title, project page, code
+repository, or existing note into one deep semantic manuscript. The same
+research judgment is then rendered for one or more platforms without rewriting
+the analysis independently for each destination.
+
+> [!IMPORTANT]
+> Markdown is the zero-configuration default and universal fallback. Notion and
+> Feishu/Lark are optional publishing backends. API keys, OAuth tokens, private
+> page IDs, and personal workspace schemas never belong in this repository or
+> its configuration file.
+
+## Recommended Agents
+
+The canonical Skill lives at [`skills/analyze-paper/`](skills/analyze-paper/).
+Any host that can load an Agent Skills-style directory can use the same source.
+
+| Agent or host | Recommended setup | Project verification |
+| --- | --- | --- |
+| [Codex](https://developers.openai.com/codex/) | Run `./scripts/install.sh --target codex` | Installer tested in CI; local runtime exercised |
+| [Claude Code](https://code.claude.com/docs/en/slash-commands) | Run `./scripts/install.sh --target claude` | Skill format and installer validated; runtime smoke test not run locally |
+| [Kimi Code](https://www.kimi.com/code/docs/en/kimi-code-cli/customization/skills.html) | Install to `~/.agents/skills` or a Kimi skills directory | Official loading paths reviewed; runtime not tested in this project |
+| [OpenClaw](https://github.com/openclaw/openclaw/blob/main/docs/tools/skills.md) | Install to `~/.openclaw/skills` | AgentSkills-compatible layout reviewed; runtime not tested in this project |
+| [Tencent WorkBuddy](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market) | Import `skills/analyze-paper/` from the Skills interface | Official package-import workflow reviewed; runtime not tested in this project |
+| [CodeBuddy IDE/CLI](https://www.codebuddy.cn/docs/cli/skills) | Install to `.codebuddy/skills` or `~/.codebuddy/skills` | Official loading paths reviewed; runtime not tested in this project |
+| [OpenCode](https://opencode.ai/docs/skills/) | Install to `~/.config/opencode/skills` | Standard Skill layout; runtime not tested in this project |
+| [MiniMax-powered agents](https://github.com/MiniMax-AI/skills) | Use the Skill through a compatible host such as Codex, Claude Code, or OpenCode | Host-dependent; no direct MiniMax Agent runtime claim |
+| Other compatible agents | Point the host at `skills/analyze-paper/SKILL.md`, or install with a custom `--dest` | Compatibility depends on the host's Skill loader and available tools |
+
+"Reviewed" means the public loading contract or package structure has been
+checked. It does not mean every third-party runtime is covered by this
+repository's CI. See [Install for Your Agent](#install-for-your-agent) for exact
+commands and the honest verification boundary.
+
+## Quick Start
+
+```bash
+git clone https://github.com/wanng-ide/open-paper-analysis.git
+cd open-paper-analysis
+./scripts/install.sh --target codex
+```
+
+Then ask your agent in ordinary language:
+
+```text
+Use the analyze-paper skill to analyze https://arxiv.org/abs/2401.06066 in
+Chinese. Create a deep Markdown note and keep exact Figure/Table markers.
+```
+
+Or request several outputs from the same analysis:
+
+```text
+Analyze this paper deeply. Write Markdown and publish the same manuscript to
+Notion and Feishu. Use media markers unless an open-license key figure is
+essential.
+```
+
+Without configuration, a writable run creates
+`paper-notes/<paper-slug>.md`. In a read-only environment, the agent returns the
+complete Markdown directly. Remote publishing never blocks the Markdown
+fallback.
+
+## Worked Example
+
+The [DeepSeekMoE worked example](examples/deepseekmoe/README.md) is a complete
+Chinese model/method analysis, not a shortened demo. It shows one manuscript
+rendered to all three backends while preserving identity, evidence, chapter
+meaning, metrics, limitations, and research judgment.
+
+<p align="center">
+  <a href="examples/deepseekmoe/markdown.md">
+    <img src="examples/deepseekmoe/screenshots/markdown.png" width="900" alt="DeepSeekMoE paper analysis rendered as portable Markdown">
+  </a>
+</p>
+
+| Inspect | Canonical artifact |
+| --- | --- |
+| Read the finished note | [Portable Markdown](examples/deepseekmoe/markdown.md) |
+| Inspect the Notion body | [Enhanced Markdown](examples/deepseekmoe/notion.md) and [logical properties](examples/deepseekmoe/notion-properties.json) |
+| Inspect Feishu/Lark rendering | [Native XML](examples/deepseekmoe/lark.xml) |
+| Audit figures and reuse rights | [Media and license manifest](examples/deepseekmoe/media.yaml) |
+
+The fixture contains no workspace URL, page ID, document token, signed media
+URL, credential, account identity, or local path.
+
+## What It Produces
+
+| Target | Native result | Failure behavior |
+| --- | --- | --- |
+| Markdown | Portable YAML metadata, visible title, sources, chapters `0-8`, equations, tables, media, and research judgment | Always available as the default or in-response fallback |
+| Notion | Live-schema properties, native table of contents, enhanced Markdown blocks, equations, tables, and uploaded media | Returns an offline Notion artifact or Markdown; never blocks other targets |
+| Feishu/Lark | Native title, compact paper-information table, heading outline, formulas, tables, images, and block-based document content | Returns XML or Markdown when publication cannot complete safely |
+
+Every requested target reports `success`, `partial`, or `blocked`
+independently. A failed remote write does not roll back a successful local note
+or another platform.
+
+## Why It Is Different
 
 | Capability | Behavior |
 | --- | --- |
-| One manuscript, many targets | Research judgment, sources, chapters, metrics, limitations, and evidence labels are defined once; only platform rendering differs. |
-| Deep by default | Chapters `0-8` exhaust useful evidence without mechanically padding short papers. |
-| Isolated subagent execution | A fresh worker owns the complete single-paper workflow when the host supports isolation; the same workflow runs inline otherwise. |
-| Paper-type adaptation | Model/method, dataset/benchmark, system/tool, survey/position, and technical-report papers receive different mechanism and evidence structures. |
-| Evidence-first analysis | Primary sources feed an evidence map and media manifest before drafting. Every retained Figure/Table receives immediate interpretation and a boundary. |
-| Native platform output | Portable Markdown, Notion enhanced Markdown, and Feishu/Lark XML use each platform's native title, headings, contents, properties, formulas, tables, and media. |
-| Independent target status | Every target returns `success`, `partial`, or `blocked`; one remote failure never rolls back another artifact. |
-| Safe create or update | DOI, arXiv ID, canonical URL, and title matching prevent duplicates; block-aware updates preserve user content and media. |
-| Permission-aware media | Marker mode is default. Extraction is limited to open-license, user-provided, or explicitly approved assets. |
-| Privacy by design | Public files contain no credentials, private IDs, personal schema, signed media URLs, account data, or local paths. |
+| One manuscript, many targets | Sources, claims, sections, metrics, limitations, and evidence labels are defined once; only platform rendering differs. |
+| Deep by default | Chapters `0-8` exhaust useful evidence without padding a short or weakly evidenced paper. |
+| Coherent subagent execution | When isolated workers are available, one fresh worker owns the complete paper run. The analysis is never fragmented across chapter writers. |
+| Paper-type adaptation | Model/method, dataset/benchmark, system/tool, survey/position, and technical-report papers receive different structures. |
+| Evidence-first drafting | Primary sources feed an evidence map and media manifest before prose is written. Each retained Figure/Table gets an interpretation and boundary. |
+| Safe create or update | DOI, arXiv ID, canonical URL, and title matching prevent duplicates; conservative updates preserve user content and media. |
+| Permission-aware media | Marker mode is the default. Extraction is limited to open-license, user-provided, or explicitly approved material. |
+| Privacy by design | Public fixtures and configuration exclude credentials, private IDs, personal schemas, signed URLs, account data, and local paths. |
 
-## Workflow
+## How It Works
 
 ```mermaid
 flowchart LR
-    A[Main agent loads the Skill] --> B{Isolated worker available?}
-    B -- Yes --> C[Delegate the complete paper run]
-    B -- No --> D[Run the same workflow inline]
-    C --> E[Resolve paper, outputs, and duplicates]
+    A[Load analyze-paper] --> B{Isolated worker available?}
+    B -- Yes --> C[Delegate one complete paper run]
+    B -- No --> D[Run the same contract inline]
+    C --> E[Resolve paper, targets, and duplicates]
     D --> E
     E --> F[Build evidence map and media manifest]
     F --> G[Draft one deep semantic manuscript]
@@ -42,61 +143,83 @@ flowchart LR
     I --> J[Return independent target statuses]
 ```
 
-The paper is never split into chapters written by separate, partially informed
-workers. One agent keeps the analysis coherent; isolated execution is used for
-context containment, not fragmented authorship.
+Subagents are used for isolation and context containment, not fragmented
+authorship. The worker receives the complete single-paper task, including
+source resolution, duplicate detection, analysis, rendering, and read-back
+verification. Hosts without isolated workers execute the same contract inline.
 
-## Install
+## Install for Your Agent
+
+All commands copy the one canonical Skill. `--dry-run` prints the destination;
+`--force` is required to replace an existing installation.
+
+**Codex**
 
 ```bash
 ./scripts/install.sh --target codex
+```
+
+**Claude Code**
+
+```bash
 ./scripts/install.sh --target claude
-./scripts/install.sh --target agents --dest /path/to/project/.agents/skills
 ```
 
-Use `--dry-run` to inspect the destination and `--force` to explicitly
-replace an existing installation. All targets copy the single canonical Skill
-under `skills/analyze-paper`.
+**Kimi Code or a shared Agent Skills directory**
 
-## Use
-
-```text
-Use $analyze-paper to analyze https://arxiv.org/abs/2401.06066 in Chinese.
+```bash
+./scripts/install.sh --target agents --dest "$HOME/.agents/skills"
 ```
 
-Request several outputs without duplicating research work:
+**OpenClaw**
 
-```text
-Analyze this paper deeply. Write Markdown and publish the same manuscript to
-Notion and Feishu. Use media markers unless an open-license key figure is
-essential.
+```bash
+./scripts/install.sh --target agents --dest "$HOME/.openclaw/skills"
 ```
 
-Without configuration, the Skill writes
-`paper-notes/<paper-slug>.md`. Copy
-[config.example.toml](skills/analyze-paper/assets/config.example.toml) to
+**CodeBuddy CLI**
+
+```bash
+./scripts/install.sh --target agents --dest "$HOME/.codebuddy/skills"
+```
+
+**OpenCode**
+
+```bash
+./scripts/install.sh --target agents --dest "$HOME/.config/opencode/skills"
+```
+
+For Tencent WorkBuddy, import the local `skills/analyze-paper/` directory from
+its Skills interface. For any other host, pass the parent skills directory to
+`--dest`; the installer creates `<destination>/analyze-paper`.
+
+## Configuration
+
+Configuration is optional. Copy
+[`config.example.toml`](skills/analyze-paper/assets/config.example.toml) to
 `.open-paper-analysis.toml` or
-`~/.config/open-paper-analysis/config.toml` to set outputs, destinations,
-property mappings, or media behavior. Credentials never belong in this file.
+`~/.config/open-paper-analysis/config.toml`:
 
-## Golden Example
+```toml
+version = 2
 
-The [DeepSeekMoE golden example](examples/deepseekmoe/README.md) renders one
-Chinese model/method analysis to:
+[defaults]
+outputs = ["markdown"]
+language = "auto"
+depth = "deep"
 
-- [Portable Markdown](examples/deepseekmoe/markdown.md)
-- [Sanitized Notion enhanced Markdown](examples/deepseekmoe/notion.md)
-- [Feishu/Lark native XML](examples/deepseekmoe/lark.xml)
-- [Shared media and license manifest](examples/deepseekmoe/media.yaml)
+[media]
+mode = "markers"
+max_items = 6
+license_policy = "open-or-approved"
 
-It includes six selected CC BY 4.0 visuals, two marker fallbacks, equations,
-paper-specific chapters, limitations, and research judgment. Sanitized
-body-only screenshots are included for all three targets.
+[markdown]
+notes_directory = "paper-notes"
+```
 
-Notion rendering follows the
-[official enhanced Markdown format](https://developers.notion.com/guides/data-apis/enhanced-markdown).
-Feishu rendering uses the
-[official document block model](https://open.feishu.cn/document/server-docs/docs/docs/docx-v1/guide).
+The active request overrides configured outputs, language, and media mode.
+Notion and Feishu/Lark destination IDs may be configured, but credentials must
+remain in the agent host, connected MCP, or CLI credential store.
 
 ## Documentation
 
@@ -105,55 +228,50 @@ Feishu rendering uses the
 - [Output backends and safe updates](docs/en/outputs.md)
 - [Quality, media, and safety](docs/en/quality-media-safety.md)
 - [Development and verification](docs/en/development.md)
+- [Complete Chinese documentation](docs/zh-CN/README.md)
 
-The [Chinese documentation](docs/zh-CN/README.md) mirrors the same guide set.
-CI checks both file collections, language navigation, and local links.
+The English and Chinese guide collections are mirrored and checked in CI.
 
-## 中文概述
+## Repository Layout
 
-Open Paper Analysis 是一个面向 Codex、Claude Code 和其他兼容 Agent 的
-单篇论文深度分析 Skill。它先基于一手来源建立 evidence map，再由同一个
-Agent 写出一份完整语义主稿，最后按需渲染为 Markdown、Notion 和飞书文档。
-三端共享论文身份、章节、指标、图表编号、局限与研究判断，平台差异只存在
-于属性、标题层级、目录、公式、表格和媒体块。
+```text
+skills/analyze-paper/        Canonical portable Skill
+docs/en/                     English guides
+docs/zh-CN/                  Chinese guides
+examples/deepseekmoe/        Three-target golden example
+evals/                       Behavioral evaluation cases
+scripts/                     Installer and repository checks
+tests/                       Validator tests
+```
 
-宿主支持子智能体时，主 Agent 会把完整单篇流程交给一个全新隔离 worker，
-包括来源解析、查重、分析、写入和读回验证；不会把正文拆给多个 Agent。
-没有 worker 时，同一流程在当前 Agent 内执行。
+## Verification
 
-Markdown 是无配置默认，也是任一平台失败后的保底。Notion 采用原生目录和
-enhanced Markdown，保持克制的学术笔记风格；飞书使用原生标题、紧凑论文
-信息表、标题大纲、公式、图片和表格。每个目标独立报告成功、部分完成或
-阻塞，不会因为一个远程后端失败而撤销其他成果。
-
-完整中文指南见[中文文档入口](docs/zh-CN/README.md)，三端效果见
-[DeepSeekMoE 示例](examples/deepseekmoe/README.md)。
-
-## Development
+The validation pipeline checks the open Agent Skills format, installer matrix,
+bilingual documentation, local links, public-artifact privacy, three-backend
+fixture consistency, XML syntax, Markdown/Notion structure, media references,
+and credential-shaped values. Gitleaks scans full Git history.
 
 ```bash
 npx --yes skills-ref@0.1.5 validate skills/analyze-paper
-python /path/to/skill-creator/scripts/quick_validate.py skills/analyze-paper
-python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/markdown.md
-python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/notion.md
-python skills/analyze-paper/scripts/validate_note.py examples/deepseekmoe/lark.xml
-python scripts/validate_examples.py
 python scripts/check_markdown_links.py
 python scripts/check_docs_parity.py
+python scripts/check_public_artifacts.py
+python scripts/validate_examples.py
+python -m unittest discover -s tests -v
 bash scripts/test-install.sh
 ```
 
-See [development guidance](docs/en/development.md) for forward tests, live
-Notion/Lark smoke-test hygiene, and release expectations. Claude Code runtime
-testing is reported as not run when that client is unavailable; Skill-format
-compatibility still remains part of validation.
+Claude Code, Kimi Code, OpenClaw, WorkBuddy, CodeBuddy, OpenCode, and direct
+MiniMax Agent runtime smoke tests are not currently part of CI. Their status is
+kept explicit in the compatibility table instead of being implied by format
+compatibility.
 
 ## Security
 
-See [SECURITY.md](SECURITY.md). CI scans full Git history with Gitleaks and
-checks fixtures for credential-shaped values, private target URLs, opaque page
-IDs, signed media URLs, and local paths.
+Read [SECURITY.md](SECURITY.md) before publishing fixtures or configuration.
+Never commit API keys, OAuth tokens, cookies, private database or page IDs,
+personal property schemas, signed media URLs, account details, or local paths.
 
 ## License
 
-Apache-2.0
+Open Paper Analysis is released under the [Apache License 2.0](LICENSE).

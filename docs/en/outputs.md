@@ -18,6 +18,7 @@ judgment.
 Markdown is the default and universal fallback. It uses:
 
 - YAML metadata with official institutions, not an author list.
+- Separate formal publication and first-public preprint dates when both exist.
 - One to four compact contribution tags. Chinese tags use at most four Han
   characters and space-delimited tags use at most four words; detailed claims
   remain in the body.
@@ -26,8 +27,8 @@ Markdown is the default and universal fallback. It uses:
 - Standard equations, tables, links, and stable relative image paths.
 - No Notion tags or Lark XML.
 
-[Markdown example](../../examples/deepseekmoe/markdown.md) |
-[body screenshot](../../examples/deepseekmoe/screenshots/markdown.png)
+[Canonical Markdown example](../../examples/deepseekmoe/markdown.md) |
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 ## Notion
 
@@ -46,7 +47,7 @@ callouts, columns, cover, or decorative color.
 
 [Sanitized enhanced-Markdown example](../../examples/deepseekmoe/notion.md) |
 [logical property fixture](../../examples/deepseekmoe/notion-properties.json) |
-[body screenshot](../../examples/deepseekmoe/screenshots/notion.png)
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 The property fixture describes canonical values, not a Notion API payload. It
 contains no database ID, page ID, workspace schema, or account data.
@@ -56,16 +57,17 @@ contains no database ID, page ID, workspace schema, or account data.
 Feishu/Lark is a full publishing backend, not only an export file:
 
 1. The document title is set with the native title field.
-2. A compact two-column table presents institution, date, venue, type, and
-   canonical links.
+2. A compact two-column table presents institutions, formal publication,
+   first-public preprint date when distinct, venue, type, topics, compact
+   contributions, and canonical links.
 3. Native headings provide the document outline; no fabricated contents
    section is added.
 4. Equations, tables, links, and images use native XML/block types.
 5. Long documents are created as a skeleton and filled serially by the same
    agent, then read back.
 
-[Lark XML example](../../examples/deepseekmoe/lark.xml) |
-[body screenshot](../../examples/deepseekmoe/screenshots/lark.png)
+[Canonical Lark XML example](../../examples/deepseekmoe/lark.xml) |
+[worked-example guide](../../examples/deepseekmoe/README.md)
 
 ## Capability and fallback order
 

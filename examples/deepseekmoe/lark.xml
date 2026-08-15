@@ -2,11 +2,14 @@
 <table>
 <tbody>
 <tr><td><b>机构</b></td><td>DeepSeek-AI；National Key Laboratory for Multimedia Information Processing, Peking University；Institute for Interdisciplinary Information Sciences, Tsinghua University；National Key Laboratory for Novel Software Technology, Nanjing University</td></tr>
-<tr><td><b>发布日期</b></td><td>2024-01-11</td></tr>
+<tr><td><b>正式发表</b></td><td>2024-08（ACL 2024）</td></tr>
+<tr><td><b>首次公开</b></td><td>2024-01-11（arXiv v1）</td></tr>
 <tr><td><b>Venue</b></td><td>ACL 2024, Volume 1: Long Papers</td></tr>
 <tr><td><b>论文类型</b></td><td>model/method</td></tr>
-<tr><td><b>论文</b></td><td><a href="https://aclanthology.org/2024.acl-long.70/">正式出版页</a></td></tr>
-<tr><td><b>代码</b></td><td><a href="https://github.com/deepseek-ai/DeepSeek-MoE">官方仓库</a></td></tr>
+<tr><td><b>主题</b></td><td>稀疏混合专家语言模型；专家专门化；细粒度专家分割；共享专家隔离</td></tr>
+<tr><td><b>贡献</b></td><td>细粒专家；共享专家；消融验证；规模扩展</td></tr>
+<tr><td><b>论文</b></td><td><a href="https://aclanthology.org/2024.acl-long.70/">ACL</a> · <a href="https://aclanthology.org/2024.acl-long.70.pdf">PDF</a> · <a href="https://arxiv.org/abs/2401.06066">arXiv</a> · <a href="https://doi.org/10.18653/v1/2024.acl-long.70">DOI</a></td></tr>
+<tr><td><b>代码</b></td><td><a href="https://github.com/deepseek-ai/DeepSeek-MoE">DeepSeek-MoE</a></td></tr>
 </tbody>
 </table>
 <h1>参考</h1>

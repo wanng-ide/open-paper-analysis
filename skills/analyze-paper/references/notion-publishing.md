@@ -132,6 +132,10 @@ metadata through `[notion.properties]` in the configuration.
 - Map canonical `institutions` to the configured institution property. Preserve
   official affiliation names, deduplicate aliases, and do not populate it with
   author names.
+- Map `published` to the formal publication date when a proceedings or journal
+  version exists. Map an earlier `preprint_date` separately when the live
+  schema provides a suitable property; never overwrite the formal date with
+  the arXiv submission date.
 - Keep topics and contributions to at most four options each. Contribution
   options are compact tags, not claim summaries: a Chinese value normally has
   no more than four Han characters, and a space-delimited value no more than
